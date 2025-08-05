@@ -1,0 +1,14 @@
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\bin\Debug\net8.0\VmTranslator.exe
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\bin\Debug\net8.0\VmTranslator.deps.json
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\bin\Debug\net8.0\VmTranslator.runtimeconfig.json
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\bin\Debug\net8.0\VmTranslator.dll
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\bin\Debug\net8.0\VmTranslator.pdb
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.AssemblyInfoInputs.cache
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.AssemblyInfo.cs
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.csproj.CoreCompileInputs.cache
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.dll
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\refint\VmTranslator.dll
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.pdb
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.genruntimeconfig.cache
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\ref\VmTranslator.dll
