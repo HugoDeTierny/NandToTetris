@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\6 - hackassembler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\6 - hackassembler\\symboltable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|solutionrelative:symboltable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\6 - hackassembler\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BE8D6AA-F8AA-4AB7-9438-A10E10F8F30D}|HackAssembler.csproj|solutionrelative:code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Code.cs",
+              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\Code.cs",
+              "RelativeDocumentMoniker": "Code.cs",
+              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\Code.cs",
+              "RelativeToolTip": "Code.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAewCIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T13:09:42.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SymbolTable.cs",
+              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\SymbolTable.cs",
+              "RelativeDocumentMoniker": "SymbolTable.cs",
+              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\SymbolTable.cs",
+              "RelativeToolTip": "SymbolTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T12:50:45.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\6 - HackAssembler\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T09:43:16.643Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
