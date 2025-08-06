@@ -12,3 +12,4 @@ C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\re
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.pdb
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.genruntimeconfig.cache
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\ref\VmTranslator.dll
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\VmTranslator\obj\Debug\net8.0\VmTranslator.sourcelink.json

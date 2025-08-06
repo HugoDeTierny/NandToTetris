@@ -1,15 +1,29 @@
+@256
+D=A
+@SP
+M=D
 //push constant 7
-@256
-D=M
-@256
+@7
+D=A
+@SP
+A=M
 M=D
+@SP
+M=M+1
 //push constant 8
-@257
-D=M
-@257
+@8
+D=A
+@SP
+A=M
 M=D
+@SP
+M=M+1
 //add
-@257
+@SP
+A=M
+A=A-1
 D=M
-@256
+A=A-1
 M=D+M
+@SP
+M=M-1

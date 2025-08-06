@@ -10,7 +10,6 @@ namespace VmTranslator
 {
     internal class CodeWriter
     {
-        private int SP = 256;
 
         private readonly int Static = 16;
 
@@ -20,6 +19,7 @@ namespace VmTranslator
         private readonly StreamWriter _writer;
         public CodeWriter(StreamWriter writer) {
             _writer = writer;
+            setValueToAdress("SP", 256);
         }
 
         public void Write(Command command)
@@ -33,26 +33,8 @@ namespace VmTranslator
                     ArithmetiqueOperation(command.Arg1);
                     break;
                 case CommandType.C_PUSH:
-                    Command = "@" + GetAddress(command.Arg1, command.Arg2);
-                    _writer.WriteLine(Command);
-                    Command = "D=M";
-                    _writer.WriteLine(Command);
-                    Command = $"@{SP}";
-                    _writer.WriteLine(Command);
-                    Command = "M=D";
-                    _writer.WriteLine(Command);
-                    SP++;
-                    break;
                 case CommandType.C_POP:
-                    Command = $"@{SP}";
-                    _writer.WriteLine(Command);
-                    Command = "D=M";
-                    _writer.WriteLine(Command);
-                    Command = "@" + GetAddress(command.Arg1, command.Arg2);
-                    _writer.WriteLine(Command);
-                    Command = "M=D";
-                    _writer.WriteLine(Command);
-                    SP--;
+                    WritePushPop(command);
                     break;
             }
         }
@@ -77,22 +59,45 @@ namespace VmTranslator
                 case "temp":
                     break;
             }
-            return SP;
+            return 0;
         }
 
-        private void WritePointer(string pointerName, int offset)
+        private void setValueToAdress(string addressName, int Value)
         {
-            string Command;
-            
-            Command = "@" + offset;
+            string Command = "@" + Value;
             _writer.WriteLine(Command);
+
             Command = "D=A";
             _writer.WriteLine(Command);
 
+            Command = "@" + addressName;
+            _writer.WriteLine(Command);
+
+            Command = "M=D";
+            _writer.WriteLine(Command);
+        }
+
+        private void GoToPointerAddress(string pointerName, int offset)
+        {
+
+            string Command;
             Command = "@" + pointerName;
             _writer.WriteLine(Command);
-            Command = "A=D+M";
+            Command = "A=M";
             _writer.WriteLine(Command);
+
+            while(offset > 0)
+            {
+                Command = "A=A+1";
+                _writer.WriteLine(Command);
+                offset--;
+            }
+            while (offset < 0)
+            {
+                Command = "A=A-1";
+                _writer.WriteLine(Command);
+                offset++;
+            }
 
         }
 
@@ -102,27 +107,44 @@ namespace VmTranslator
             switch (command.Type)
             {
                 case CommandType.C_PUSH:
-                    WritePointer(command.Arg1, command.Arg2);
-                    Command = "D=M";
-                    _writer.WriteLine(Command);
-                    Command = "@" + SP;
-                    _writer.WriteLine(Command);
+
+                    if (command.Arg1 == "constant")
+                    {
+                        Command = "@" + command.Arg2;
+                        _writer.WriteLine(Command);
+
+                        Command = "D=A";
+                        _writer.WriteLine(Command);
+                    }
+                    else
+                    {
+                        GoToPointerAddress(command.Arg1, command.Arg2);
+                        Command = "D=M";
+                        _writer.WriteLine(Command);
+                    }
+                    GoToPointerAddress("SP", 0);
                     Command = "M=D";
                     _writer.WriteLine(Command);
-                    SP++;
+
+                    Command = "@SP";
+                    _writer.WriteLine(Command);
+                    Command = "M=M+1";
+                    _writer.WriteLine(Command);
                     break;
                 case CommandType.C_POP:
-                    Command = "@" + SP;
-                    _writer.WriteLine(Command);
+                    GoToPointerAddress("SP", 0);
                     Command = "D=M";
-                    _writer.WriteLine(Command);
-                    // We need to save the value somewhere with this implementation
-
-                    WritePointer(command.Arg1, command.Arg2);
+                    GoToPointerAddress(command.Arg1, command.Arg2);
                     Command = "M=D";
+                    _writer.WriteLine(Command);
+
+
+                    Command = "@SP";
+                    _writer.WriteLine(Command);
+                    Command = "M=M-1";
+                    _writer.WriteLine(Command);
                     break;
             }
-            WritePointer(command.Arg1, command.Arg2);
         }
 
         private void ArithmetiqueOperation(string  operation)
@@ -131,38 +153,42 @@ namespace VmTranslator
             switch(operation)
             {
                 case "add":
-                    SP--;
-                    command = $"@{SP}";
-                    _writer.WriteLine(command);
+                    GoToPointerAddress("SP", -1);
                     command = "D=M";
                     _writer.WriteLine(command);
-                    SP--;
-                    command = $"@{SP}";
+
+                    command = "A=A-1";
                     _writer.WriteLine(command);
+
                     command = "M=D+M";
                     _writer.WriteLine(command);
-                    SP++;
+
+                    command = "@SP";
+                    _writer.WriteLine(command);
+                    command = "M = M-1";
+                    _writer.WriteLine(command);
+                    
                     break;
                 case "sub":
-                    SP--;
-                    command = $"@{SP}";
-                    _writer.WriteLine(command);
+                    GoToPointerAddress("SP", -1);
                     command = "D=M";
                     _writer.WriteLine(command);
-                    SP--;
-                    command = $"@{SP}";
+
+                    command = "A=A-1";
                     _writer.WriteLine(command);
+
                     command = "M=D-M";
                     _writer.WriteLine(command);
-                    SP++;
+
+                    command = "@SP";
+                    _writer.WriteLine(command);
+                    command = "M = M-1";
+                    _writer.WriteLine(command);
                     break;
                 case "neg":
-                    SP--;
-                    command = $"@{SP}";
+                    GoToPointerAddress("SP", -1);
+                    command = "M=-M";
                     _writer.WriteLine(command);
-                    command = "D=-M";
-                    _writer.WriteLine(command);
-                    SP++;
                     break;
                 case "eq":
                     break;

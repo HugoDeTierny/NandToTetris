@@ -40,3 +40,4 @@ C:\Users\h.tierny\Desktop\NandToTetris\Programs\6 - HackAssembler\obj\Debug\net8
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\6 - HackAssembler\obj\Debug\net8.0\HackAssembler.pdb
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\6 - HackAssembler\obj\Debug\net8.0\HackAssembler.genruntimeconfig.cache
 C:\Users\h.tierny\Desktop\NandToTetris\Programs\6 - HackAssembler\obj\Debug\net8.0\ref\HackAssembler.dll
+C:\Users\h.tierny\Desktop\NandToTetris\Programs\6 - HackAssembler\obj\Debug\net8.0\HackAssembler.sourcelink.json
