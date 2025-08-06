@@ -29,7 +29,8 @@ namespace VmTranslator
                     InstructionsLines.Add(parser.GetCommand());
                 }
             }
-            using (FileStream fs = File.Create(args[0] + ".asm"))
+            string outputfile = args[0].Split('.')[0] + ".asm";
+            using (FileStream fs = File.Create(outputfile))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
                 {

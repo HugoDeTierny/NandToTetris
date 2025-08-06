@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:vmtranslator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\vmtranslator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:vmtranslator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,13 +50,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "VmTranslator.csproj",
               "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VmTranslator.csproj",
               "RelativeDocumentMoniker": "VmTranslator.csproj",
               "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VmTranslator.csproj",
               "RelativeToolTip": "VmTranslator.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-08-06T20:56:29.441Z",
               "EditorCaption": ""
@@ -119,11 +119,12 @@
               "RelativeToolTip": "Command.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAvwAoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T12:49:40.055Z"
+              "WhenOpened": "2025-08-05T12:49:40.055Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CodeWriter.cs",
               "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CodeWriter.cs",
               "RelativeDocumentMoniker": "CodeWriter.cs",
@@ -136,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Parser.cs",
               "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\Parser.cs",
               "RelativeDocumentMoniker": "Parser.cs",
@@ -155,7 +156,7 @@
               "RelativeDocumentMoniker": "VMTranslator.cs",
               "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VMTranslator.cs",
               "RelativeToolTip": "VMTranslator.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwBYAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwB8AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-04T14:57:52.803Z",
               "EditorCaption": ""
@@ -183,7 +184,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "CommandType.cs",
               "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CommandType.cs",
               "RelativeDocumentMoniker": "CommandType.cs",
