@@ -11,13 +11,19 @@ M=D
 @SP
 M=M+1
 //pop local 0
-@SP
-A=M
-@local
-A=M
+@0
+D=A
+@LCL
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //push constant 21
 @21
 D=A
@@ -35,24 +41,33 @@ M=D
 @SP
 M=M+1
 //pop argument 2
-@SP
-A=M
-@argument
-A=M
-A=A+1
-A=A+1
+@2
+D=A
+@ARG
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //pop argument 1
-@SP
-A=M
-@argument
-A=M
-A=A+1
+@1
+D=A
+@ARG
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //push constant 36
 @36
 D=A
@@ -62,19 +77,19 @@ M=D
 @SP
 M=M+1
 //pop this 6
-@SP
-A=M
-@this
-A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
+@6
+D=A
+@THIS
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //push constant 42
 @42
 D=A
@@ -92,28 +107,33 @@ M=D
 @SP
 M=M+1
 //pop that 5
-@SP
-A=M
-@that
-A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
+@5
+D=A
+@THAT
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //pop that 2
-@SP
-A=M
-@that
-A=M
-A=A+1
-A=A+1
+@2
+D=A
+@THAT
+D=D+M
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //push constant 510
 @510
 D=A
@@ -123,21 +143,27 @@ M=D
 @SP
 M=M+1
 //pop temp 6
-@SP
-A=M
-@temp
-A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
+@6
+D=A
+@5
+D=D+A
+@R13
 M=D
 @SP
 M=M-1
+A=M
+D=M
+@R13
+A=M
+M=D
 //push local 0
-@local
+@0
+D=A
+@LCL
+D=D+M
+@R13
+M=D
+@R13
 A=M
 D=M
 @SP
@@ -146,13 +172,14 @@ M=D
 @SP
 M=M+1
 //push that 5
-@that
+@5
+D=A
+@THAT
+D=D+M
+@R13
+M=D
+@R13
 A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
 D=M
 @SP
 A=M
@@ -167,11 +194,16 @@ D=M
 A=A-1
 M=D+M
 @SP
-M = M-1
+M=M-1
 //push argument 1
-@argument
+@1
+D=A
+@ARG
+D=D+M
+@R13
+M=D
+@R13
 A=M
-A=A+1
 D=M
 @SP
 A=M
@@ -184,18 +216,18 @@ A=M
 A=A-1
 D=M
 A=A-1
-M=D-M
+M=M-D
 @SP
-M = M-1
+M=M-1
 //push this 6
-@this
+@6
+D=A
+@THIS
+D=D+M
+@R13
+M=D
+@R13
 A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
 D=M
 @SP
 A=M
@@ -203,14 +235,14 @@ M=D
 @SP
 M=M+1
 //push this 6
-@this
+@6
+D=A
+@THIS
+D=D+M
+@R13
+M=D
+@R13
 A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
 D=M
 @SP
 A=M
@@ -225,25 +257,25 @@ D=M
 A=A-1
 M=D+M
 @SP
-M = M-1
+M=M-1
 //sub
 @SP
 A=M
 A=A-1
 D=M
 A=A-1
-M=D-M
+M=M-D
 @SP
-M = M-1
+M=M-1
 //push temp 6
-@temp
+@6
+D=A
+@5
+D=D+A
+@R13
+M=D
+@R13
 A=M
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
-A=A+1
 D=M
 @SP
 A=M
@@ -258,4 +290,4 @@ D=M
 A=A-1
 M=D+M
 @SP
-M = M-1
+M=M-1

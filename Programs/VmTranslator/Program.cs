@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            args = [ @"Test\BasicTest" ];
+            args = [@"Test\BasicTest"];
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: HackAssembler <input file>");
@@ -35,6 +35,7 @@
                     {
                         parser.Write(command);
                     }
+                    parser.Close();
                 }
             }
 
