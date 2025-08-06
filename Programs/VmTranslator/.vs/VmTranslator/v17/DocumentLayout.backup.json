@@ -1,38 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\",
+  "WorkspaceRootPath": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\vmtranslator\\codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\vmtranslator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:vmtranslator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\vmtranslator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\vmtranslator\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\vmtranslator\\commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:codewriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\vmtranslator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:vmtranslator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:commandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{552C442A-9C08-606F-3F43-A6D17CDA262C}|..\\6 - HackAssembler\\HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\6 - hackassembler\\symboltable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{552C442A-9C08-606F-3F43-A6D17CDA262C}|..\\6 - HackAssembler\\HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\6 - hackassembler\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\vmtranslator\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|c:\\users\\hugot\\projects\\nandtotetris\\programs\\vmtranslator\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21AC8594-5DB1-43F2-9BDB-A5D044CA171D}|VmTranslator.csproj|solutionrelative:command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{552C442A-9C08-606F-3F43-A6D17CDA262C}|..\\6 - HackAssembler\\HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\6 - hackassembler\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\SymbolTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{552C442A-9C08-606F-3F43-A6D17CDA262C}|..\\6 - HackAssembler\\HackAssembler.csproj|c:\\users\\h.tierny\\desktop\\nandtotetris\\programs\\6 - hackassembler\\code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Code.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,106 +46,116 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
+              "Title": "VmTranslator.csproj",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VmTranslator.csproj",
+              "RelativeDocumentMoniker": "VmTranslator.csproj",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VmTranslator.csproj",
+              "RelativeToolTip": "VmTranslator.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-06T20:56:29.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "SymbolTable.cs",
               "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\SymbolTable.cs",
-              "RelativeDocumentMoniker": "..\\6 - HackAssembler\\SymbolTable.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\SymbolTable.cs",
               "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\SymbolTable.cs",
-              "RelativeToolTip": "..\\6 - HackAssembler\\SymbolTable.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\SymbolTable.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T15:06:26.363Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T15:06:26.363Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "Parser.cs",
               "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Parser.cs",
-              "RelativeDocumentMoniker": "..\\6 - HackAssembler\\Parser.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Parser.cs",
               "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Parser.cs",
-              "RelativeToolTip": "..\\6 - HackAssembler\\Parser.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Parser.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T15:06:46.156Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Program.cs",
-              "RelativeDocumentMoniker": "..\\6 - HackAssembler\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Program.cs",
               "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Program.cs",
-              "RelativeToolTip": "..\\6 - HackAssembler\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T13:22:12.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T13:22:12.271Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Code.cs",
               "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Code.cs",
-              "RelativeDocumentMoniker": "..\\6 - HackAssembler\\Code.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Code.cs",
               "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Code.cs",
-              "RelativeToolTip": "..\\6 - HackAssembler\\Code.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\Code.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwL0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T13:20:29.92Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Command.cs",
-              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Command.cs",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\Command.cs",
               "RelativeDocumentMoniker": "Command.cs",
-              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Command.cs",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\Command.cs",
               "RelativeToolTip": "Command.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAvwAoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T12:49:40.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T12:49:40.055Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "CodeWriter.cs",
-              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\CodeWriter.cs",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CodeWriter.cs",
               "RelativeDocumentMoniker": "CodeWriter.cs",
-              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\CodeWriter.cs*",
-              "RelativeToolTip": "CodeWriter.cs*",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAWwIcAAAAYAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CodeWriter.cs",
+              "RelativeToolTip": "CodeWriter.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAIAwwBQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-04T15:11:22.886Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Parser.cs",
-              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Parser.cs",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\Parser.cs",
               "RelativeDocumentMoniker": "Parser.cs",
-              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Parser.cs",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\Parser.cs",
               "RelativeToolTip": "Parser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-04T15:10:53.553Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "VMTranslator.cs",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VMTranslator.cs",
+              "RelativeDocumentMoniker": "VMTranslator.cs",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\VMTranslator.cs*",
+              "RelativeToolTip": "VMTranslator.cs*",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwBYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-04T14:57:52.803Z",
               "EditorCaption": ""
@@ -155,9 +169,9 @@
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
         "Id": "a993aaf9-809d-442f-b831-7a17a5bd2b99",
-        "Display": 0,
-        "X": 385,
-        "Y": 379,
+        "Display": 1,
+        "X": 483,
+        "Y": 291,
         "Width": 1540,
         "Height": 644,
         "WindowState": 0
@@ -169,11 +183,11 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CommandType.cs",
-              "DocumentMoniker": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\CommandType.cs",
+              "DocumentMoniker": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CommandType.cs",
               "RelativeDocumentMoniker": "CommandType.cs",
-              "ToolTip": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\VmTranslator\\CommandType.cs",
+              "ToolTip": "C:\\Users\\hugot\\projects\\NandToTetris\\Programs\\VmTranslator\\CommandType.cs",
               "RelativeToolTip": "CommandType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

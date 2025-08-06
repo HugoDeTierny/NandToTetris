@@ -1,0 +1,15 @@
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\bin\Release\net8.0\HackAssembler.exe
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\bin\Release\net8.0\HackAssembler.deps.json
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\bin\Release\net8.0\HackAssembler.runtimeconfig.json
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\bin\Release\net8.0\HackAssembler.dll
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\bin\Release\net8.0\HackAssembler.pdb
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.AssemblyInfoInputs.cache
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.AssemblyInfo.cs
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.csproj.CoreCompileInputs.cache
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.sourcelink.json
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.dll
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\refint\HackAssembler.dll
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.pdb
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\HackAssembler.genruntimeconfig.cache
+C:\Users\hugot\projects\NandToTetris\Programs\6 - HackAssembler\obj\Release\net8.0\ref\HackAssembler.dll

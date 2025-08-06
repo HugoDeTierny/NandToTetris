@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata;
@@ -32,8 +33,14 @@ namespace VmTranslator
         public CodeWriter(StreamWriter writer) {
             _writer = writer;
             setValueToAdress("SP", 256);
+            CommandString = "@START";
+            CommandString = "0;JMP";
             SetBasicCommand();
 
+        }
+        public void ProgramStart()
+        {
+            CommandString = "(START)";
         }
         // END Jump, write loop to end
         public void Close()
@@ -46,7 +53,6 @@ namespace VmTranslator
         {
             // On écrie l'entéte sous forme de commentaire pour debug
             _writer.WriteLine(command.CommandText);
-            string Command;
             switch (command.Type)
             {
                 case CommandType.C_ARITHMETIC:
@@ -198,115 +204,12 @@ namespace VmTranslator
             }
 
         }
-        /*
-        private void WritePushPop(Command command)
-        {
-            string Command;
-            switch (command.Type)
-            {
-                case CommandType.C_PUSH:
-
-                    if (command.Arg1 == "constant")
-                    {
-                        Command = "@" + command.Arg2;
-                        _writer.WriteLine(Command);
-
-                        Command = "D=A";
-                        _writer.WriteLine(Command);
-                    }
-                    else if (command.Arg1 == "static")
-                    {
-                        Command = "@static." + command.Arg2;
-                        _writer.WriteLine(Command);
-                        Command = "D=M";
-                        _writer.WriteLine(Command);
-                    }
-                    else if (command.Arg1 == "pointer")
-                    {
-                        if (command.Arg2 == 0)
-                        {
-                            Command = "@THIS";
-                            _writer.WriteLine(Command);
-
-                            Command = "D=M";
-                            _writer.WriteLine(Command);
-                        }
-                        else if (command.Arg2 == 1)
-                        {
-                            Command = "@THAT";
-                            _writer.WriteLine(Command);
-
-                            Command = "D=M";
-                            _writer.WriteLine(Command);
-                        }
-                    }
-                    else
-                    {
-                        GoToPointerAddress(command.Arg1, command.Arg2);
-                        Command = "D=M";
-                        _writer.WriteLine(Command);
-                    }
-                    GoToPointerAddress("SP", 0);
-                    Command = "M=D";
-                    _writer.WriteLine(Command);
-
-                    Command = "@SP";
-                    _writer.WriteLine(Command);
-                    Command = "M=M+1";
-                    _writer.WriteLine(Command);
-                    break;
-                case CommandType.C_POP:
-                    GoToPointerAddress("SP", -1);
-                    Command = "D=M";
-                    _writer.WriteLine(Command);
-                    if (command.Arg1 == "static")
-                    {
-                        Command = "@static." + command.Arg2;
-                        _writer.WriteLine(Command);
-                        Command = "M=D";
-                        _writer.WriteLine(Command);
-                    }
-                    else if (command.Arg1 == "pointer")
-                    {
-                        if (command.Arg2 == 0)
-                        {
-                            Command = "@THIS";
-                            _writer.WriteLine(Command);
-
-                            Command = "M=D";
-                            _writer.WriteLine(Command);
-                        }
-                        else if (command.Arg2 == 1)
-                        {
-                            Command = "@THAT";
-                            _writer.WriteLine(Command);
-
-                            Command = "M=D";
-                            _writer.WriteLine(Command);
-                        }
-                    }
-                    else
-                    {
-                        GoToPointerAddress(command.Arg1.ToUpper(), command.Arg2);
-                        Command = "M=D";
-                        _writer.WriteLine(Command);
-                    }
-
-                    Command = "@SP";
-                    _writer.WriteLine(Command);
-                    Command = "M=M-1";
-                    _writer.WriteLine(Command);
-                    break;
-            }
-        }
-        */
-
-        int operationCounter = 0;
+       int operationCounter = 0;
 
         private void ArithmetiqueOperation(string  operation)
         {
             string command;
-            switch(operation)
+            switch (operation)
             {
                 case "add":
                     GoToPointerAddress("SP", -1);
@@ -317,8 +220,8 @@ namespace VmTranslator
                     CommandString = "M=D+M";
 
                     CommandString = "@SP";
-                    
-                    CommandString = "M=M-1";                    
+
+                    CommandString = "M=M-1";
                     break;
                 case "sub":
                     GoToPointerAddress("SP", -1);
@@ -326,7 +229,7 @@ namespace VmTranslator
 
                     CommandString = "A=A-1";
                     CommandString = "M=M-D";
-                    
+
                     CommandString = "@SP";
                     CommandString = "M=M-1";
                     break;
@@ -335,27 +238,96 @@ namespace VmTranslator
                     CommandString = "M=-M";
                     break;
                 case "eq":
+
+                    // Store value to jump in R13
+                    CommandString = $"@ENDOPERATION:{operationCounter}";
+                    CommandString = "D=A";
+                    CommandString = "@R13";
+                    CommandString = "M=D";
+
+                    // Set SP backward and get address
                     CommandString = "@SP";
+                    CommandString = "// AM=M-1";
                     CommandString = "AM=M-1";
-                    //CommandString = "A=M";
+                   
+                    // Get M value
                     CommandString = "D=M";
+                    // Set SP backward and get address
                     CommandString = "@SP";
                     CommandString = "AM=M-1";
+
+                    // Compare
                     CommandString = "D=M-D";
 
-
-
+                    // Jump
                     CommandString = "@TRUE";
                     CommandString = "D;JEQ";
                     CommandString = "@FALSE";
                     CommandString = "0;JMP";
-
-                    
+                    // Mark end of operation
+                    CommandString = $"(ENDOPERATION:{operationCounter})";
+                    operationCounter++;
 
                     break;
                 case "gt":
+                    // Store value to jump in R13
+                    CommandString = $"@ENDOPERATION:{operationCounter}";
+                    CommandString = "D=A";
+                    CommandString = "@R13";
+                    CommandString = "M=D";
+
+                    // Set SP backward and get address
+                    CommandString = "@SP";
+                    CommandString = "// AM=M-1";
+                    CommandString = "AM=M-1";
+
+                    // Get M value
+                    CommandString = "D=M";
+                    // Set SP backward and get address
+                    CommandString = "@SP";
+                    CommandString = "AM=M-1";
+
+                    // Compare
+                    CommandString = "D=M-D";
+
+                    // Jump
+                    CommandString = "@TRUE";
+                    CommandString = "D;JGT";
+                    CommandString = "@FALSE";
+                    CommandString = "0;JMP";
+                    // Mark end of operation
+                    CommandString = $"(ENDOPERATION:{operationCounter})";
+                    operationCounter++;
                     break;
                 case "lt":
+                    // Store value to jump in R13
+                    CommandString = $"@ENDOPERATION:{operationCounter}";
+                    CommandString = "D=A";
+                    CommandString = "@R13";
+                    CommandString = "M=D";
+
+                    // Set SP backward and get address
+                    CommandString = "@SP";
+                    CommandString = "// AM=M-1";
+                    CommandString = "AM=M-1";
+
+                    // Get M value
+                    CommandString = "D=M";
+                    // Set SP backward and get address
+                    CommandString = "@SP";
+                    CommandString = "AM=M-1";
+
+                    // Compare
+                    CommandString = "D=M-D";
+
+                    // Jump
+                    CommandString = "@TRUE";
+                    CommandString = "D;JLT";
+                    CommandString = "@FALSE";
+                    CommandString = "0;JMP";
+                    // Mark end of operation
+                    CommandString = $"(ENDOPERATION:{operationCounter})";
+                    operationCounter++;
                     break;
                 case "and":
                     GoToPointerAddress("SP", -1);
