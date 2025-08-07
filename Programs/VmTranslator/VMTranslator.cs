@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace VmTranslator
 {
@@ -8,6 +9,8 @@ namespace VmTranslator
     {
         static void Main(string[] args)
         {
+            List<string> FileList = new List<string>();
+            args = args.Append("Test").ToArray();
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: HackAssembler <input file>");
@@ -16,17 +19,32 @@ namespace VmTranslator
             string inputFile = args[0];
             if (!File.Exists(inputFile))
             {
-                Console.WriteLine($"Error: File '{inputFile}' does not exist.");
-                return;
+                if (!Directory.Exists(inputFile))
+                {
+                    Console.WriteLine($"Error: File '{inputFile}' does not exist.");
+                    return;
+                }
+                foreach(string file in Directory.GetFiles(inputFile))
+                {
+                    FileList.Add(file);
+                }
+
+            }
+            else
+            {
+                FileList.Add(inputFile);
             }
             List<Command> InstructionsLines = new List<Command>();
-            using (StreamReader reader = new StreamReader(inputFile))
+            foreach (string file in FileList)
             {
-                Parser parser = new Parser(reader);
-                while (parser.HasMoreCommand())
+                using (StreamReader reader = new StreamReader(file))
                 {
-                    parser.Advance();
-                    InstructionsLines.Add(parser.GetCommand());
+                    Parser parser = new Parser(reader);
+                    while (parser.HasMoreCommand())
+                    {
+                        parser.Advance();
+                        InstructionsLines.Add(parser.GetCommand());
+                    }
                 }
             }
             string outputfile = args[0].Split('.')[0] + ".asm";

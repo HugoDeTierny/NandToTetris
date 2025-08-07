@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VmTranslator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73fed5b6d41883d15fc587e49ea5cf5449af2751")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79117538ad07a666db28031340e8adcbcc237437")]
 [assembly: System.Reflection.AssemblyProductAttribute("VmTranslator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VmTranslator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
