@@ -10,6 +10,7 @@ namespace VmTranslator
     internal class Parser
     {
         List<string> InstructionsLines = new List<string>();
+        private string FileName;
         public Parser(StreamReader reader)
         {
 
@@ -27,7 +28,10 @@ namespace VmTranslator
             }
         }
         
-
+        public void SetFileName(string fileName)
+        {
+            this.FileName = fileName;
+        }
 
 
         private string? CurrentLine = null;
@@ -56,6 +60,7 @@ namespace VmTranslator
 
             return new Command(
                 "//" + CurrentLine,
+                FileName,
                 currentComandType,
                 arg1(),
                 arg2());

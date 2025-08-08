@@ -10,7 +10,7 @@ namespace VmTranslator
         static void Main(string[] args)
         {
             List<string> FileList = new List<string>();
-            args = args.Append("Test").ToArray();
+            args = args.Append("NestedCall").ToArray();
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: HackAssembler <input file>");
@@ -26,7 +26,9 @@ namespace VmTranslator
                 }
                 foreach(string file in Directory.GetFiles(inputFile))
                 {
-                    FileList.Add(file);
+                    string[] tmpField = file.Split(".");
+                    if(tmpField.Length > 1 && tmpField[tmpField.Length-1] == "vm")
+                        FileList.Add(file);
                 }
 
             }
@@ -35,11 +37,14 @@ namespace VmTranslator
                 FileList.Add(inputFile);
             }
             List<Command> InstructionsLines = new List<Command>();
+
             foreach (string file in FileList)
             {
+                string fileName = file.Split("\\").Last();
                 using (StreamReader reader = new StreamReader(file))
                 {
                     Parser parser = new Parser(reader);
+                    parser.SetFileName(fileName);
                     while (parser.HasMoreCommand())
                     {
                         parser.Advance();

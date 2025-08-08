@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("HackAssembler")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("VmTranslator")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a3d691d9cda53863a58778dbc15b4806cf2901c")]
-[assembly: System.Reflection.AssemblyProductAttribute("HackAssembler")]
-[assembly: System.Reflection.AssemblyTitleAttribute("HackAssembler")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79117538ad07a666db28031340e8adcbcc237437")]
+[assembly: System.Reflection.AssemblyProductAttribute("VmTranslator")]
+[assembly: System.Reflection.AssemblyTitleAttribute("VmTranslator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Généré par la classe MSBuild WriteCodeFragment.
