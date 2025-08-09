@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection.Emit;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace VmTranslator
 {
     internal class CodeWriter
     {
-        private Stack<CallerEntity> CallerStack = new Stack<CallerEntity>();
+       // private Stack<CallerEntity> CallerStack = new Stack<CallerEntity>();
         private int CallIndex = 0;
         private readonly int Static = 16;
 
@@ -35,14 +36,15 @@ namespace VmTranslator
         public CodeWriter(StreamWriter writer) {
             _writer = writer;
             setValueToAdress("SP", 256);
-            CommandString = "@START";
+            //CommandString = "@START";
+            CommandString = "@Sys.init";
             CommandString = "0;JMP";
             SetBasicCommand();
 
         }
         public void ProgramStart()
         {
-            CommandString = "(START)";
+            //CommandString = "(START)";
         }
         // END Jump, write loop to end
         public void Close()
@@ -91,7 +93,7 @@ namespace VmTranslator
         private void WritePop(string RegisterName, int offset)
         {
             // 1 Get and stock pointer address
-            GetAddress(RegisterName, offset, FileName);
+            GetAddress(RegisterName, offset);
             // 2 Get and stock stack pile value
             CommandString = "@SP";
             CommandString = "M=M-1";
@@ -113,7 +115,7 @@ namespace VmTranslator
             else
             {
                 // 1 get register address in R13
-                GetAddress(RegisterName, offset, FileName);
+                GetAddress(RegisterName, offset);
 
                 //2 On récupére la valeur
                 CommandString = "@R13";
@@ -142,7 +144,7 @@ namespace VmTranslator
         /// </summary>
         /// <param name="RegisterName"></param>
         /// <param name="offset"></param>
-        private void GetAddress(string RegisterName, int offset, string FileName)
+        private void GetAddress(string RegisterName, int offset)
         {
             // To do revoir static
             switch (RegisterName)
@@ -418,25 +420,23 @@ namespace VmTranslator
             {
                 label = CurrentFonction + "$" + label;
             }
-            label = FileName + "." + label;
             CommandString ="(" + label + ")";
         }
         /// <summary>
         /// Go To Command
         /// </summary>
         /// <param name="label"></param>
-        private void writeGoTo(string label)
+        private void writeGoTo(string label, bool iscall = false)
         {
-            if(CurrentFonction != string.Empty)
+            if(CurrentFonction != string.Empty && !iscall)
             {
                 label = CurrentFonction + "$" + label; 
             }
-            label = FileName + "." + label;
             CommandString = "@" + label;
             CommandString = "0;JMP";
         }
         /// <summary>
-        /// If-Goto command (we jump if previous value > 0)
+        /// If-Goto command (we jump if previous value < 0)
         /// </summary>
         /// <param name="label"></param>
         private void writeIf(string label)
@@ -445,13 +445,12 @@ namespace VmTranslator
             {
                 label = CurrentFonction + "$" + label;
             }
-            label = FileName + "." + label;
 
             CommandString = "@SP";
             CommandString = "AM=M-1";
             CommandString = "D=M";
             CommandString = "@" + label;
-            CommandString = "D;JGT";
+            CommandString = "D;JNE";
         }
         
 
@@ -459,31 +458,27 @@ namespace VmTranslator
 
         private void writeFunction(string functionName, int numVars)
         {
+            CurrentFonction = functionName;
+            CallIndex = 0;
+            CommandString = "(" + functionName + ")";
+
             CommandString = "@SP";
             CommandString = "A=M";
             for (int i = 0;  i < numVars; i++)
             {
-
                 CommandString = "M=0";
                 CommandString = "A=A+1";
-
             }
-
-            CurrentFonction = functionName;
-            CallIndex = 0;
-            CommandString = "(" + FileName + "." + functionName + ")";
-
+            CommandString = "@" + numVars;
+            CommandString = "D=A";
+            CommandString = "@SP";
+            CommandString = "M=D+M";
 
         }
 
         private void writeCall(string functionName, int numVars)
         {
-            string returnAddress = FileName + "." + CurrentFonction + "$ret." + CallIndex;
-            CallerStack.Push(new CallerEntity()
-            {
-                Caller = CurrentFonction,
-                index = CallIndex,
-            });
+            string returnAddress = CurrentFonction + "$ret." + CallIndex;
             // push return address
             CommandString = "@" + returnAddress;
             CommandString = "D=A";
@@ -525,7 +520,7 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // goto function
-            writeGoTo(functionName);
+            writeGoTo(functionName,true);
 
             // Declare label of return address
             CommandString = "(" + returnAddress + ")";
@@ -534,49 +529,56 @@ namespace VmTranslator
 
         private void WriteReturn()
         {
-            string endFrameName = FileName + "." + CurrentFonction + "." + "endframe";
-            string returnAddresseName = FileName + "." + CurrentFonction + "." + "returnAddress";
+            string endFrameName =  CurrentFonction + "." + "endframe";
+            string returnAddresseName = CurrentFonction + "." + "returnAddress";
             // Tmp variable endframe stock LCL
+            CommandString = "// Tmp variable endframe stock LCL";
             CommandString = "@LCL";
             CommandString = "D=M";
             CommandString = "@" + endFrameName;
             CommandString = "M=D";
 
-            // get and stock the return address
+            // get and stock the return address *(LCL-5)
+            CommandString = "// get and stock the return address *(LCL-5)";
             CommandString = "@5";
             CommandString = "A=D-A";
-            CommandString = "A=M";
+            //CommandString = "A=M"; // i think this is useless
             CommandString = "D=M";
             CommandString = "@" + returnAddresseName;
             CommandString = "M=D";
 
             // *ARG = pop()
+            CommandString = "// *ARG = pop()";
             WritePop("argument", 0);
 
             // SP = ARG + 1
+            CommandString = "// SP = ARG + 1";
             CommandString = "@ARG";
             CommandString = "D=M+1";
             CommandString = "@SP";
             CommandString = "M=D";
 
             // THAT = *(endframe-1)
+            CommandString = " // THAT = *(endframe-1)";
             CommandString = "@" + endFrameName;
-            CommandString = "A=A-1";
+            CommandString = "A=M-1";
             CommandString = "D=M";
             CommandString = "@THAT";
             CommandString = "M=D";
 
             // THIS = *(endframe-2)
+            CommandString = "// THIS = *(endframe-2)";
             CommandString = "@" + endFrameName;
-            CommandString = "A=A-1";
+            CommandString = "A=M-1";
             CommandString = "A=A-1";
             CommandString = "D=M";
             CommandString = "@THIS";
             CommandString = "M=D";
 
             // ARG = *(endframe-3)
+            CommandString = " // ARG = *(endframe-3)";
             CommandString = "@" + endFrameName;
-            CommandString = "A=A-1";
+            CommandString = "A=M-1";
             CommandString = "A=A-1";
             CommandString = "A=A-1";
             CommandString = "D=M";
@@ -584,8 +586,9 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // LCL = *(endframe-4)
+            CommandString = " // LCL = *(endframe-4)";
             CommandString = "@" + endFrameName;
-            CommandString = "A=A-1";
+            CommandString = "A=M-1";
             CommandString = "A=A-1";
             CommandString = "A=A-1";
             CommandString = "A=A-1";
@@ -593,13 +596,11 @@ namespace VmTranslator
             CommandString = "@LCL";
             CommandString = "M=D";
 
-            // GOTO ret adress
-            CallerEntity callerEntity = CallerStack.Pop();
+            // go to returnAddresseName
+            CommandString = "// go to returnAddresseName";
 
-            CurrentFonction = callerEntity.Caller;
-            CallIndex = callerEntity.index;
-
-            CommandString = "@" + FileName + "." + callerEntity.Caller + "$ret." + callerEntity.index; ;
+            CommandString = "@" + returnAddresseName;
+            CommandString = "A=M";
             CommandString = "0;JMP";
 
 

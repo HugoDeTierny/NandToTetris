@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace VmTranslator
 {
@@ -10,7 +11,8 @@ namespace VmTranslator
         static void Main(string[] args)
         {
             List<string> FileList = new List<string>();
-            args = args.Append("NestedCall").ToArray();
+            bool isFile = false;
+            args = args.Append("FibonacciElement").ToArray();
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: HackAssembler <input file>");
@@ -34,6 +36,7 @@ namespace VmTranslator
             }
             else
             {
+                isFile = true;
                 FileList.Add(inputFile);
             }
             List<Command> InstructionsLines = new List<Command>();
@@ -53,6 +56,10 @@ namespace VmTranslator
                 }
             }
             string outputfile = args[0].Split('.')[0] + ".asm";
+            if (!isFile)
+            {
+                outputfile = args[0] + "\\" + outputfile;
+            }
             using (FileStream fs = File.Create(outputfile))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
