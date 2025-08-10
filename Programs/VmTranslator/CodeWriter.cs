@@ -35,16 +35,26 @@ namespace VmTranslator
         private string FileName;
         public CodeWriter(StreamWriter writer) {
             _writer = writer;
-            setValueToAdress("SP", 256);
-            //CommandString = "@START";
-            CommandString = "@Sys.init";
-            CommandString = "0;JMP";
-            SetBasicCommand();
+
 
         }
-        public void ProgramStart()
+        public void ProgramStart(bool isFile)
         {
-            //CommandString = "(START)";
+            if (!isFile)
+            {
+                setValueToAdress("SP", 261);
+                
+                CommandString = "@Sys.init";
+                CommandString = "0;JMP";
+            }
+            else 
+            {
+                CommandString = "@START";
+                CommandString = "0;JMP";
+            }
+            SetBasicCommand();
+            if(isFile)
+                CommandString = "(START)";
         }
         // END Jump, write loop to end
         public void Close()
@@ -275,7 +285,7 @@ namespace VmTranslator
 
                     // Set SP backward and get address
                     CommandString = "@SP";
-                    CommandString = "// AM=M-1";
+                    //CommandString = "// AM=M-1";
                     CommandString = "AM=M-1";
                    
                     // Get M value
@@ -306,7 +316,7 @@ namespace VmTranslator
 
                     // Set SP backward and get address
                     CommandString = "@SP";
-                    CommandString = "// AM=M-1";
+                    //CommandString = "// AM=M-1";
                     CommandString = "AM=M-1";
 
                     // Get M value
@@ -336,7 +346,7 @@ namespace VmTranslator
 
                     // Set SP backward and get address
                     CommandString = "@SP";
-                    CommandString = "// AM=M-1";
+                    //CommandString = "// AM=M-1";
                     CommandString = "AM=M-1";
 
                     // Get M value
@@ -532,14 +542,14 @@ namespace VmTranslator
             string endFrameName =  CurrentFonction + "." + "endframe";
             string returnAddresseName = CurrentFonction + "." + "returnAddress";
             // Tmp variable endframe stock LCL
-            CommandString = "// Tmp variable endframe stock LCL";
+            //CommandString = "// Tmp variable endframe stock LCL";
             CommandString = "@LCL";
             CommandString = "D=M";
             CommandString = "@" + endFrameName;
             CommandString = "M=D";
 
             // get and stock the return address *(LCL-5)
-            CommandString = "// get and stock the return address *(LCL-5)";
+            //CommandString = "// get and stock the return address *(LCL-5)";
             CommandString = "@5";
             CommandString = "A=D-A";
             //CommandString = "A=M"; // i think this is useless
@@ -548,18 +558,18 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // *ARG = pop()
-            CommandString = "// *ARG = pop()";
+            //CommandString = "// *ARG = pop()";
             WritePop("argument", 0);
 
             // SP = ARG + 1
-            CommandString = "// SP = ARG + 1";
+            //CommandString = "// SP = ARG + 1";
             CommandString = "@ARG";
             CommandString = "D=M+1";
             CommandString = "@SP";
             CommandString = "M=D";
 
             // THAT = *(endframe-1)
-            CommandString = " // THAT = *(endframe-1)";
+            //CommandString = "// THAT = *(endframe-1)";
             CommandString = "@" + endFrameName;
             CommandString = "A=M-1";
             CommandString = "D=M";
@@ -567,7 +577,7 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // THIS = *(endframe-2)
-            CommandString = "// THIS = *(endframe-2)";
+            //CommandString = "// THIS = *(endframe-2)";
             CommandString = "@" + endFrameName;
             CommandString = "A=M-1";
             CommandString = "A=A-1";
@@ -576,7 +586,7 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // ARG = *(endframe-3)
-            CommandString = " // ARG = *(endframe-3)";
+            //CommandString = "// ARG = *(endframe-3)";
             CommandString = "@" + endFrameName;
             CommandString = "A=M-1";
             CommandString = "A=A-1";
@@ -586,7 +596,7 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // LCL = *(endframe-4)
-            CommandString = " // LCL = *(endframe-4)";
+            //CommandString = "// LCL = *(endframe-4)";
             CommandString = "@" + endFrameName;
             CommandString = "A=M-1";
             CommandString = "A=A-1";
@@ -597,7 +607,7 @@ namespace VmTranslator
             CommandString = "M=D";
 
             // go to returnAddresseName
-            CommandString = "// go to returnAddresseName";
+            //CommandString = "// go to returnAddresseName";
 
             CommandString = "@" + returnAddresseName;
             CommandString = "A=M";

@@ -22,7 +22,7 @@ namespace VmTranslator
                     continue;
 
                 line = line.Split("//", StringSplitOptions.TrimEntries)[0];
-                if (string.IsNullOrEmpty(line))
+                if (string.IsNullOrEmpty(line) || string.IsNullOrWhiteSpace(line))
                     continue;
                 InstructionsLines.Add(line);
             }

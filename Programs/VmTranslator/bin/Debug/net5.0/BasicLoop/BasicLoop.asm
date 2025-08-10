@@ -1,7 +1,3 @@
-@256
-D=A
-@SP
-M=D
 @START
 0;JMP
 (TRUE)
@@ -46,7 +42,7 @@ D=M
 A=M
 M=D
 //label LOOP
-(BasicLoop.vm.LOOP)
+(LOOP)
 //push argument 0
 @0
 D=A
@@ -165,8 +161,8 @@ M=M+1
 @SP
 AM=M-1
 D=M
-@BasicLoop.vm.LOOP
-D;JGT
+@LOOP
+D;JNE
 //push local 0
 @0
 D=A

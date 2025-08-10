@@ -12,7 +12,7 @@ namespace VmTranslator
         {
             List<string> FileList = new List<string>();
             bool isFile = false;
-            args = args.Append("FibonacciElement").ToArray();
+            //args = args.Append("StaticsTest").ToArray();
             if (args.Length != 1)
             {
                 Console.WriteLine("Usage: HackAssembler <input file>");
@@ -43,7 +43,7 @@ namespace VmTranslator
 
             foreach (string file in FileList)
             {
-                string fileName = file.Split("\\").Last();
+                string fileName = file.Split(Path.DirectorySeparatorChar).Last();
                 using (StreamReader reader = new StreamReader(file))
                 {
                     Parser parser = new Parser(reader);
@@ -58,14 +58,14 @@ namespace VmTranslator
             string outputfile = args[0].Split('.')[0] + ".asm";
             if (!isFile)
             {
-                outputfile = args[0] + "\\" + outputfile;
+                outputfile = args[0] +  Path.DirectorySeparatorChar + outputfile;
             }
             using (FileStream fs = File.Create(outputfile))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
                 {
                     CodeWriter parser = new CodeWriter(writer);
-                    parser.ProgramStart();
+                    parser.ProgramStart(isFile);
                     foreach(Command command in InstructionsLines)
                     {
                         parser.Write(command);
