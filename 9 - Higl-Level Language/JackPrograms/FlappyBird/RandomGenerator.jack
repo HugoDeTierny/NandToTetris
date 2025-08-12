@@ -1,0 +1,46 @@
+class RandomGenerator{
+	static int m_A;
+	static int m_M;
+	static int m_Q;
+	static int m_R;
+	
+	constructor RandomGenerator new() {
+
+    // Set constants for random generator
+    let m_A = 219;
+    let m_M = 32749;
+    let m_Q = m_M / m_A;
+    let m_R = Util.mod(m_M, m_A);
+	
+	return this;
+	}
+	
+	function int set_random_seed(int val)
+	{  
+		var int index;
+		var int bias;
+		var int m_rnd_seed;
+	
+		let index = Util.mod(val, 40);
+		let bias = val;
+
+		let m_rnd_seed = 0 ; //(m_random_values[index] + bias) & 32767;
+
+    return m_rnd_seed;
+  }
+
+  function int rand(int m_rnd_seed)
+  {
+    var int candidate_rnd_seed;
+
+    let candidate_rnd_seed = (m_A * (Util.mod(m_rnd_seed, m_Q))) - (m_R * (m_rnd_seed / m_Q));
+
+    if (candidate_rnd_seed < 0) {
+      let m_rnd_seed = candidate_rnd_seed + m_M;
+    } else {
+      let m_rnd_seed = candidate_rnd_seed;
+    }
+
+    return m_rnd_seed;
+  }
+}

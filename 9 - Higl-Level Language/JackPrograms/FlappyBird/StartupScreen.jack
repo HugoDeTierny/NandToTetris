@@ -19,43 +19,44 @@ class StartupScreen {
     */
 
     // Display the rules
-    do Output.moveCursor(3, 1);
+    do Output.moveCursor(3, 2);
     let str = "Welcome to my flappy bird implementation.";
     do Output.printString(str);
 
-    do Output.moveCursor(4, 1);
+    do Output.moveCursor(4, 2);
     let str = "This is an hommage to the first flappy bird from 2012, and, will not be used for commercial purpose";
     do Output.printString(str);
+	    do Output.moveCursor(5, 1);
+    let str = " will not be used for commercial purpose";
+    do Output.printString(str);
 
-    do Output.moveCursor(6, 15);
+    do Output.moveCursor(7, 2);
     let str = "The objective of the game is to fly through as many gates as possible";
     do Output.printString(str);
 
-    do Output.moveCursor(7, 15);
+    do Output.moveCursor(8, 2);
     let str = "if no key is pressed the bird will go down";
     do Output.printString(str);
 
-    do Output.moveCursor(8, 15);
+    do Output.moveCursor(10, 2);
     let str = "To move up, press the Up Arrow.";
     do Output.printString(str);
 
-    do Output.moveCursor(9, 15);
+    do Output.moveCursor(11, 2);
     let str = "If your bird meet a gate, the ground, our the top of the screen it will result in dying";
     do Output.printString(str);
 
-    do Output.moveCursor(10, 15);
+    do Output.moveCursor(12, 2);
     let str = "There are different difficulty level changing the bird speed.";
     do Output.printString(str);
 
-    do Output.moveCursor(11, 15);
-    let str = "Choose a difficulty between 1 and 5";
-    do Output.printString(str);
+
 /*
-    do Output.moveCursor(12, 15);
+    do Output.moveCursor(14, 1);
     let str = "itself.  The center pip, #5, inverts itself and";
     do Output.printString(str);
 
-    do Output.moveCursor(13, 0);
+    do Output.moveCursor(15, 0);
     let str = "pips 2, 4, 6, and 8.  Finally, the middle edge pips, invert all";
     do Output.printString(str);
 

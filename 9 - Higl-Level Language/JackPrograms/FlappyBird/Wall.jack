@@ -1,0 +1,39 @@
+class Wall{
+	field int Position;
+	field int Hole;
+	field int m_rnd_seed;
+	
+	constructor Wall new(int position, int seed){
+		let Position = position;
+		let m_rnd_seed = seed;
+		let Hole = 100;
+		
+		return this;
+	}
+	
+	method void draw(){
+		if(Position > 0){
+			if (Position < 502){
+				do Screen.drawRectangle(Position, 1, Position + 10 , Hole - 20);
+				do Screen.drawRectangle(Position, Hole + 20, Position + 10 , 250); 
+			}
+		}
+		return;
+	}
+	
+	method void move(){
+		let Position = Position - 1;
+		do draw();
+		return;
+	}
+	
+	method void redraw(){
+		let Position = 510;
+		let Hole = 100;
+		return;
+	}
+	
+	method int getPosition(){
+		return Position;
+	}
+}

@@ -1,8 +1,29 @@
 class Main {
   function void main() {
+    var GameBoard game;
+    var String str;
+	do StartupScreen.show_title_screen();
+	
+	
+    do Output.moveCursor(17, 1);
+    let str = "Choose your sprite";
+    do Output.printString(str);
   
-  do StartupScreen.show_title_screen();
-  
+    do Output.moveCursor(22, 1);
+    let str = "Choose a difficulty between 1 and 4";
+    do Output.printString(str);
+
+    // Start initial game and draw grid
+    let game = GameBoard.new();
+
+    do game.waitForDifficultyChoice();
+	
+	do game.initGameScreen();
+
+    // Run the game to completion
+    do game.run();
+
+    do game.dispose();
     return;
   }
 }
