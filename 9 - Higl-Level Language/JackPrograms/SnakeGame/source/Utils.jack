@@ -1,0 +1,53 @@
+/**
+    Utility class that defines a couple of functions not present in Jack OS API and usefull for the game
+*/
+class Utils {
+
+    /**
+        Implement modulo mathematical function
+    */
+    function int modulo(int a, int b) {
+        var int quotient, product, remainder;
+        let quotient = a / b;
+        let product = quotient * b;
+        let remainder = a - product;
+        return remainder;
+    }
+
+    /**
+        A pseudo-random number generator that starts from a seed number
+         and generates a number in a range defined by the max argument
+    */
+    function int getRandomNumber(int seed, int max) {
+        let seed = seed * 503 + 17;
+        return Utils.modulo(seed, max);
+    }
+
+    /**
+        Generate a new number that round the numberToRound to a number that is smaller than numberToRound
+         and can be devided by roundToMultipleOf
+    */
+    function int roundBy(int numberToRound, int roundToMultipleOf) {
+        return ((numberToRound / roundToMultipleOf) * roundToMultipleOf);
+    }
+
+    /**
+        Size of the block is 10 pixels in both directions 0..9
+    */
+    function void drawBlock(int x, int y) {
+        do Screen.drawRectangle(x * 10, y * 10, (x * 10) + 9, (y * 10) + 9);
+        return;
+    }
+
+    /**
+        Used for debug, clean text from a line
+    */
+    function void clearLine(int line) {
+        if(line < Constants.getMinCursorLine() | line > Constants.getMaxCursorLine()) {
+            do Sys.error(Errors.getLineCursorOutOfRangeError());
+        }
+        do Output.moveCursor(line, 0);
+        do Output.printString("                                                               ");
+        return;
+    }
+}

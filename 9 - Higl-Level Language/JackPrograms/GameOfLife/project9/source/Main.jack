@@ -1,0 +1,12 @@
+/**
+ * Main class for Conways Game of Life Simulator.
+ */
+class Main {
+    function void main() {
+        var LifeController lifeController;
+        let lifeController = LifeController.new();
+        do lifeController.run();
+        do lifeController.dispose();
+        return;
+    }
+}

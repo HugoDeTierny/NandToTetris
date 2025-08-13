@@ -1,3 +1,4 @@
+// will be used to have holes at different height
 class RandomGenerator{
 	static int m_A;
 	static int m_M;

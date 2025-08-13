@@ -1,19 +1,20 @@
 class GameBoard {
-  static int m_A;
-  static int m_M;
-  static int m_Q;
-  static int m_R;
-
+	static int m_A;
+	static int m_M;
+	static int m_Q;
+	static int m_R;
+	
   field int m_state;  // state of the pips, max 0x1ff
   field int m_difficulty;
   field GuiBoard m_guiBoard;
+  field Sprit character;
   field int m_rnd_seed;
   field Array m_random_values;
 
   constructor GameBoard new() {
     
     let m_difficulty = 0;
-
+	let character = Sprit.new();
     return this;
   }
 
@@ -22,8 +23,6 @@ class GameBoard {
   //let rnd_value = Rand();
 	let m_guiBoard = GuiBoard.new(m_difficulty);//rnd_value);
     do Screen.clearScreen();
-    do m_guiBoard.drawGrid();
-
     return;
   }
 
@@ -33,71 +32,40 @@ class GameBoard {
     return;
   }
 
-  // Input from the keyboard this way so that no echo to the screen happens
-  method int debouncePipNumberInput() {
-    var int pip_number;
-    var char ch;
-
-    let ch = 0;
-
-    // Wait for valid key press
-    while (ch = 0) {
-        let ch = Keyboard.keyPressed();
-
-        if ((ch < 49) | (ch > 57)) {
-          let ch = 0;
-        }
-    }
-
-    let pip_number = 0;
-
-    if (ch = 49) { let pip_number = 1; }
-    if (ch = 50) { let pip_number = 2; }
-    if (ch = 51) { let pip_number = 3; }
-    if (ch = 52) { let pip_number = 4; }
-    if (ch = 53) { let pip_number = 5; }
-    if (ch = 54) { let pip_number = 6; }
-    if (ch = 55) { let pip_number = 7; }
-    if (ch = 56) { let pip_number = 8; }
-    if (ch = 57) { let pip_number = 9; }
-
-    // Wait for key to be release
-    while (~(ch = 0)) {
-      let ch = Keyboard.keyPressed();
-    }
-
-    return pip_number;
-  }
-
-  function int xorMaskFromPipNumber(int pip_number) {
-    var int xor_mask;
-
-    let xor_mask = 0;
-
-    // Get the pip's XOR mask
-    if (pip_number = 1) { let xor_mask =  27; }   // 0x01b
-    if (pip_number = 2) { let xor_mask =   7; }   // 0x007
-    if (pip_number = 3) { let xor_mask =  54; }   // 0x036
-    if (pip_number = 4) { let xor_mask =  73; }   // 0x049
-    if (pip_number = 5) { let xor_mask = 186; }   // 0x0ba
-    if (pip_number = 6) { let xor_mask = 292; }   // 0x124
-    if (pip_number = 7) { let xor_mask = 216; }   // 0x0d8
-    if (pip_number = 8) { let xor_mask = 448; }   // 0x1c0
-    if (pip_number = 9) { let xor_mask = 432; }   // 0x1b0
-
-    return xor_mask;
-  }
-
+// the loop where the game happen
   method void run() {
-	var int i;
+	var int i, pressedKey, j, retain_Up_Task, bird_bot, bird_top;
+	var boolean moveUp;
+	let moveUp = false;
+	let retain_Up_Task = 5;
 	while (true){
 		if(i =1000){
 			do Screen.clearScreen();
-			do m_guiBoard.move();
+			
+			let bird_bot = character.getBot();
+			let bird_top = character.getTop();
+			do m_guiBoard.move(bird_bot, bird_top);
+			
 			let i = 0;
+			let j = 800;
 		}
-		else {
-			let i = i+1;
+		
+		if(j = 800) 
+		{
+			do character.move(moveUp);
+			let retain_Up_Task = retain_Up_Task - 1;
+			if (retain_Up_Task = 0) {
+				let moveUp = false;
+			}
+			let j = 0;
+		}
+		let i = i+1;
+		let j = j+1;
+		let pressedKey = Keyboard.keyPressed();
+		if (pressedKey = 131){
+			let moveUp = true;
+			let pressedKey = 0;
+			let retain_Up_Task = 5;
 		}
 	}
     return;
@@ -168,85 +136,6 @@ class GameBoard {
     return;
   }
 
-  // Set game state and redraw all pips
-  method void setState(int state) {
-    let m_state = state;
-
-    do blankMaskedPips(511);
-    do drawMaskedPips(m_state);
-
-    return;
-  }
-
-  // Erase the pips of the given mask
-  method void blankMaskedPips(int mask) {
-    if (mask & 1)   { do m_guiBoard.blankPip(1); }
-    if (mask & 2)   { do m_guiBoard.blankPip(2); }
-    if (mask & 4)   { do m_guiBoard.blankPip(3); }
-    if (mask & 8)   { do m_guiBoard.blankPip(4); }
-    if (mask & 16)  { do m_guiBoard.blankPip(5); }
-    if (mask & 32)  { do m_guiBoard.blankPip(6); }
-    if (mask & 64)  { do m_guiBoard.blankPip(7); }
-    if (mask & 128) { do m_guiBoard.blankPip(8); }
-    if (mask & 256) { do m_guiBoard.blankPip(9); }
-
-    return;
-  }
-
-  // Draw the pips of the given mask
-  method void drawMaskedPips(int mask) {
-    if (mask & 1)   { do m_guiBoard.drawPip(1); }
-    if (mask & 2)   { do m_guiBoard.drawPip(2); }
-    if (mask & 4)   { do m_guiBoard.drawPip(3); }
-    if (mask & 8)   { do m_guiBoard.drawPip(4); }
-    if (mask & 16)  { do m_guiBoard.drawPip(5); }
-    if (mask & 32)  { do m_guiBoard.drawPip(6); }
-    if (mask & 64)  { do m_guiBoard.drawPip(7); }
-    if (mask & 128) { do m_guiBoard.drawPip(8); }
-    if (mask & 256) { do m_guiBoard.drawPip(9); }
-
-    return;
-  }
-
-  method void generateGame()
-  {
-    var int idx;
-    var int pip_number;
-    var int previous_pip_number;
-    var int xor_mask;
-    let idx = m_difficulty;
-
-    if (m_difficulty = 0) {
-      // Don't randomly pick the solution
-      while ((m_rnd_seed & 511) = 495) {
-        do rand();
-      }
-
-      do setState(m_rnd_seed & 511);
-    } else {
-      let m_state = 495;  // Solved game (i.e. goal state)
-
-      let idx = m_difficulty * 3;
-      let previous_pip_number = -1;
-      let pip_number = -1;
-
-      while (idx > 0) {
-        // Choose a pip
-        while (previous_pip_number = pip_number) {
-          let pip_number = Util.mod(rand(), 9) + 1;
-        }
-
-        let previous_pip_number = pip_number;
-        let xor_mask = GameBoard.xorMaskFromPipNumber(pip_number);
-        let m_state = Util.xor(m_state, xor_mask);
-        let idx = idx - 1;
-      }
-
-      do setState(m_state);
-    }
-
-    return;
-  }
 
   method void set_random_seed(int val)
   {

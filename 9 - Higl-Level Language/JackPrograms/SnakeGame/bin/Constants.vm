@@ -1,0 +1,42 @@
+function Constants.getBlockSize 0
+push constant 10
+return
+function Constants.getMinGridX 0
+push constant 0
+return
+function Constants.getMaxGridX 0
+push constant 49
+return
+function Constants.getMinGridY 0
+push constant 0
+return
+function Constants.getMaxGridY 0
+push constant 19
+return
+function Constants.getMinCursorLine 0
+push constant 0
+return
+function Constants.getMaxCursorLine 0
+push constant 22
+return
+function Constants.getLeftArrowChar 0
+push constant 130
+return
+function Constants.getUpArrowChar 0
+push constant 131
+return
+function Constants.getRightArrowChar 0
+push constant 132
+return
+function Constants.getDownArrowChar 0
+push constant 133
+return
+function Constants.getEscChar 0
+push constant 140
+return
+function Constants.getNoKeyPressedChar 0
+push constant 0
+return
+function Constants.getFramePauseTime 0
+push constant 100
+return

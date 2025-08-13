@@ -1,0 +1,119 @@
+function AgentModel.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 0
+push constant 0
+pop this 1
+push pointer 0
+return
+function AgentModel.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function AgentModel.getIsAlive 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function AgentModel.getIsBornOrDying 0
+push argument 0
+pop pointer 0
+push this 1
+push this 0
+eq
+return
+function AgentModel.stageIsDying 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push constant 2
+eq
+push argument 1
+push constant 3
+eq
+or
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 1
+label IF_FALSE0
+push this 0
+push argument 1
+push constant 0
+eq
+push argument 1
+push constant 1
+eq
+or
+push argument 1
+push constant 4
+eq
+or
+push argument 1
+push constant 4
+gt
+or
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+pop this 1
+label IF_FALSE1
+push this 0
+not
+push argument 1
+push constant 3
+eq
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+pop this 1
+label IF_FALSE2
+push this 0
+not
+push argument 1
+push constant 3
+eq
+not
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+pop this 1
+label IF_FALSE3
+push constant 0
+return
+function AgentModel.commitIsDying 0
+push argument 0
+pop pointer 0
+push this 1
+not
+pop this 0
+push constant 0
+pop this 1
+push constant 0
+return
+function AgentModel.setIsAlive 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push constant 0
+pop this 1
+push constant 0
+return

@@ -1,0 +1,75 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/9/GuessingGame/RandomGenerator.jack
+
+/**
+ * Implements a pseudo-random number generator using Linear Congruential Generator (LCG).
+ * This class provides methods to generate random integers within specified ranges.
+ */
+class RandomGenerator {
+    field int seed;     // Current seed value
+    field int a;        // Multiplier
+    field int c;        // Increment
+    field int m;        // Modulus
+    
+    /** Constructs a new random generator with time-based seed. */
+    constructor RandomGenerator new() {
+        let a = 1664525;    // Standard LCG parameters
+        let c = 1013904223;
+        let m = 32767;      // 2^15 - 1, largest int in Jack
+        
+        // Initialize with a semi-random seed based on user input timing
+        do Output.printString("Press any key to initialize random generator...");
+        do Keyboard.readChar();
+        let seed = 12345;   // Simple initial seed
+        do Output.println();
+        
+        return this;
+    }
+    
+    /** Disposes this random generator. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    /** Generates the next random number and updates the seed. */
+    method int next() {
+        let seed = Math.abs((a * seed + c) - ((a * seed + c) / m * m));
+        return seed;
+    }
+    
+    /** Generates a random integer between min and max (inclusive). */
+    method int nextIntInRange(int min, int max) {
+        var int range;
+        var int randomValue;
+        
+        if (min > max) {
+            // Swap if min > max
+            let range = min;
+            let min = max;
+            let max = range;
+        }
+        
+        let range = max - min + 1;
+        let randomValue = next();
+        
+        // Use modulo to get value in range, then add min
+        return min + (randomValue - ((randomValue / range) * range));
+    }
+    
+    /** Seeds the generator with a specific value. */
+    method void setSeed(int newSeed) {
+        let seed = Math.abs(newSeed);
+        if (seed = 0) {
+            let seed = 1;  // Avoid zero seed
+        }
+        return;
+    }
+    
+    /** Gets the current seed value. */
+    method int getSeed() {
+        return seed;
+    }
+}

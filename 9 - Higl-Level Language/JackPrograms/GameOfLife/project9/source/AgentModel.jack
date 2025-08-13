@@ -1,0 +1,61 @@
+/**
+ * Agent class for Conways Game of Life.
+ */
+class AgentModel {
+   field boolean isAlive;
+   field boolean isDying;
+
+   /** Constructs a new agent model. */
+   constructor AgentModel new() {
+      let isAlive = false;
+      let isDying = false;
+      return this;
+   }
+
+   /** Disposes the agent model. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   /** Accessor for isAlive field **/
+   method boolean getIsAlive() {
+      return isAlive;
+   }
+
+   /** Returns whether agent is set to die at next time step **/
+   method boolean getIsBornOrDying() {
+      return (isDying = isAlive);
+   }
+
+   /** Prepare agent to die or be born at next time step **/
+   method void stageIsDying(int numAliveNeighbors) {
+      if ((isAlive) & ((numAliveNeighbors = 2) | (numAliveNeighbors = 3))) {
+         let isDying = false;
+      } 
+      if ((isAlive) & ((numAliveNeighbors = 0) | (numAliveNeighbors = 1) | (numAliveNeighbors = 4) | (numAliveNeighbors > 4))) {
+         let isDying = true;
+      } 
+      if ((~isAlive) & (numAliveNeighbors = 3)) {
+         let isDying = false;
+      } 
+      if ((~isAlive) & ~(numAliveNeighbors = 3)) {
+         let isDying = true;
+      }
+      return;
+   }
+
+   /** Commit birth / death based **/
+   method void commitIsDying() {
+      let isAlive = ~isDying;
+      let isDying = false;
+      return;
+   }
+
+   /** Force alive / not alive state **/
+   method void setIsAlive(boolean alive) {
+      let isAlive = alive;
+      let isDying = false;
+      return;
+   }
+}

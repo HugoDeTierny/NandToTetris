@@ -1,0 +1,9 @@
+function Errors.getXCoordinateOutOfRangeError 0
+push constant 101
+return
+function Errors.getYCoordinateOutOfRangeError 0
+push constant 102
+return
+function Errors.getLineCursorOutOfRangeError 0
+push constant 150
+return

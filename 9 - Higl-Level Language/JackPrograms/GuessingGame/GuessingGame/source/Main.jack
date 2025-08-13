@@ -1,0 +1,22 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/9/GuessingGame/Main.jack
+
+/**
+ * Main class for the Number Guessing Game application.
+ * This is the entry point that creates and runs the game.
+ */
+class Main {
+    /** Main function - entry point of the application. */
+    function void main() {
+        var GuessingGame game;
+        
+        // Create and run the guessing game
+        let game = GuessingGame.new();
+        do game.run();
+        do game.dispose();
+        
+        return;
+    }
+}

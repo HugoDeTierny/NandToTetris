@@ -1,0 +1,13 @@
+class Errors {
+    function int getXCoordinateOutOfRangeError() {
+        return 101;
+    }
+
+    function int getYCoordinateOutOfRangeError() {
+        return 102;
+    }
+
+    function int getLineCursorOutOfRangeError() {
+        return 150;
+    }
+}

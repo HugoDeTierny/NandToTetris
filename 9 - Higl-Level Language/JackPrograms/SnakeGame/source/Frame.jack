@@ -1,0 +1,38 @@
+class Frame {
+    field int xIndex;
+    field int yIndex;
+
+    constructor Frame new() {
+        let xIndex = 1;
+        let yIndex = 0;
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    method void draw() {
+        do Screen.setColor(true);
+
+        while(~(xIndex = Constants.getMaxGridX())) {
+            do Utils.drawBlock(xIndex, Constants.getMinGridY());
+            do Utils.drawBlock(xIndex, Constants.getMaxGridY());
+            let xIndex = xIndex + 1;
+            do Sys.wait(5);
+        }
+
+        do Sys.wait(100);
+
+        while(~(yIndex = (Constants.getMaxGridY() + 1))) {
+            do Utils.drawBlock(Constants.getMinGridX(), yIndex);
+            do Utils.drawBlock(Constants.getMaxGridX(), yIndex);
+            let yIndex = yIndex + 1;
+            do Sys.wait(5);
+        }
+
+        do Sys.wait(100);
+        return;
+    }
+}

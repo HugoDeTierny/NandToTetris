@@ -1,0 +1,198 @@
+class SnakeGame {
+    /**
+     The snake game is being played in a raster / grid of 500 pixels x 200 pixels
+     The size of snake block and also of snake prey is 10 pixels
+     The snake is moving with a step size that is equal to block size so one grid column or one grid row at a time
+     Blocks of this grid are addressable as in a matrix:
+      M[0,0] => x direction pixels from 0..9, y direction pixels from 0..9
+      M[49, 19] => x: 49 * 10..49 * 10 + 9, y: 19 * 10..19 * 10 + 9
+      therefore the formula index * 10..index * 10 + 9
+        [0,0]  ------------- [49,0]
+          |           p        |
+          |    ..s             |
+          |                    |
+        [0,19] ------------- [49, 19]
+    */
+
+    field Prey prey;
+    field Snake snake;
+    field Frame frame;
+
+    constructor SnakeGame new() {
+        /*
+         Initial positions:
+            Snake head: [x=15, y=15]. Snake starts only with one block, the head
+            Prey: [x=25, y=25]
+            x -> 0, 49
+            y -> 0, 19
+        */
+        let frame = Frame.new();
+        let prey = Prey.new(5, 10);
+        let snake = Snake.new(5, 5, prey);
+        return this;
+    }
+
+    method void dispose() {
+        do snake.dispose();
+        do prey.dispose();
+        do frame.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /**
+        Method checking if the snake collied
+    */
+    method boolean hasCollided() {
+        return (hasCollidedWithWalls() | hasCollidedWithItself());
+    }
+
+    /**
+        Method checking collision with walls
+    */
+    method boolean hasCollidedWithWalls() {
+        if((snake.getHeadX() = Constants.getMinGridX()) | (snake.getHeadX() = Constants.getMaxGridX())) {
+            return true;
+        }
+
+        if((snake.getHeadY() = Constants.getMinGridY()) | (snake.getHeadY() = Constants.getMaxGridY())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+        Method checking collision with self, head with any other snake block
+    */
+    method boolean hasCollidedWithItself() {
+        return snake.hasCollidedWithItself();
+    }
+
+    /**
+        Game refresh frequency
+    */
+    method void tick() {
+        do Sys.wait(Constants.getFramePauseTime());
+        return;
+    }
+
+    /**
+        Game orchestrator method, reacts to user input, moves the snake, reacts to collisions and stops the game
+    */
+    method void run() {
+        var boolean gameOver;
+        var char key;
+        var int initialSnakeSize;
+
+        let gameOver = false;
+        let key = 0;
+        let initialSnakeSize = snake.length();
+
+        do displayStartGame();
+
+        do frame.draw();
+        do prey.show();
+
+        while (~gameOver) {
+            
+            // no key pressed by user
+            while(key = Constants.getNoKeyPressedChar() & (~gameOver)) {
+                do snake.move(key);
+                let gameOver = hasCollided();
+                do tick();
+                let key = Keyboard.keyPressed();
+            }
+
+            // key pressed by user
+            while((~(key = Constants.getNoKeyPressedChar())) & (~gameOver)) {
+                do snake.move(key);
+                let gameOver = hasCollided();
+                do tick();
+                let key = Keyboard.keyPressed();
+            }
+        }
+
+        do displayGameOver(snake.length() - initialSnakeSize);
+        return;
+    }
+
+    /**
+        Displays the start screen
+    */
+    method void displayStartGame() {
+        do Screen.clearScreen();
+        do Output.moveCursor(10, 10);
+        do Output.printString("Starting Snake Game ...");
+        do Output.moveCursor(11, 10);
+        do Output.printString("Use arrow keys to guide the snake towards food");
+        do Sys.wait(5000);
+        do Screen.clearScreen();
+        return;
+    }
+
+    /**
+        Displays the final score at the end
+    */
+    method void displayGameOver(int score) {
+        do Screen.clearScreen();
+        do Output.moveCursor(10, 20);
+        do Output.printString("Game over!");
+        do Output.moveCursor(11, 20);
+        do Output.printString("Your final score was: ");
+        do Output.printInt(score);
+        return;
+    }
+
+    /**
+        Not used - for debug purpose
+    */
+    method void printScore(int score) {
+       do Utils.clearLine(22);
+       do Output.moveCursor(22, 0);
+       do Output.printString("Score: ");
+       do Output.printInt(score);
+       return; 
+    }
+
+    /**
+        Not used - for debug purpose
+    */
+    method void debug() {
+        do Utils.clearLine(19);
+        do Output.moveCursor(19, 0);
+        do Output.printString("Snake x,y: ");
+        do Output.printInt(snake.getHeadX());
+        do Output.printString(" ");
+        do Output.printInt(snake.getHeadY());
+
+        do Utils.clearLine(20);
+        do Output.moveCursor(20, 0);
+        do Output.printString("Prey x,y: ");
+        do Output.printInt(prey.getX());
+        do Output.printString(" ");
+        do Output.printInt(prey.getY());
+
+        do Utils.clearLine(21);
+        do Output.moveCursor(21, 0);
+        do Output.printString("Direction: ");
+        
+        if(snake.getMoveDirection() = Constants.getUpArrowChar()) {
+            do Output.printString("UP");
+        }
+        
+        if(snake.getMoveDirection() = Constants.getDownArrowChar()) {
+            do Output.printString("DOWN");
+        }
+        
+        if(snake.getMoveDirection() = Constants.getLeftArrowChar()) {
+            do Output.printString("LEFT");
+        }
+        
+        if(snake.getMoveDirection() = Constants.getRightArrowChar()) {
+            do Output.printString("RIGHT");
+        }
+
+        return;
+    }
+}

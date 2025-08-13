@@ -1,0 +1,12 @@
+/**
+   Entry point class and method that is called by the emulator / OS
+*/
+class Main {
+   function void main() {
+      var SnakeGame game;
+      let game = SnakeGame.new();
+      do game.run();
+      do game.dispose();
+      return;
+   }
+}

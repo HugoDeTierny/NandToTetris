@@ -1,0 +1,240 @@
+/**
+    Class modeling the snake behaviour
+*/
+class Snake {
+    
+    field BlockList snakeBlocks;
+    field Prey prey;
+    field char currentDirection;
+
+    constructor Snake new(int xHeadPosition, int yHeadPosition, Prey target) {
+        var BlockList temp;
+        var XYCoordinate tail;
+        var XYCoordinate middle;
+        var XYCoordinate head;
+        
+        let tail = XYCoordinate.new(xHeadPosition, yHeadPosition - 2);
+        let middle = XYCoordinate.new(xHeadPosition, yHeadPosition - 1);
+        let head = XYCoordinate.new(xHeadPosition, yHeadPosition);
+        
+        let snakeBlocks = BlockList.new(tail, null);
+        let snakeBlocks = BlockList.new(middle, snakeBlocks);
+        let snakeBlocks = BlockList.new(head, snakeBlocks);
+
+        let currentDirection = Constants.getDownArrowChar();
+
+        let prey = target;
+
+        return this;
+    }
+
+    method void dispose() {
+        do snakeBlocks.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method int getHeadX() {
+        var XYCoordinate temp;
+        let temp = snakeBlocks.getData();
+        return temp.getX();
+    }
+
+    method int getHeadY() {
+        var XYCoordinate temp;
+        let temp = snakeBlocks.getData();
+        return temp.getY();
+    }
+    method char getMoveDirection() { return currentDirection; }
+
+    method void setMoveDirection(char direction) {
+        if(~(direction = Constants.getNoKeyPressedChar())) {
+            let currentDirection = direction;
+        }
+        return;
+    }
+
+    /**
+        Implements logic that check if the head of the snake has colided with the rest of the snake
+    */
+    method boolean hasCollidedWithItself() {
+        var XYCoordinate head;
+        var BlockList tail;
+
+        let head = snakeBlocks.getData();
+        let tail = snakeBlocks.getNext();
+        return tail.includes(head);
+    }
+
+    method void moveLeft() {
+        var XYCoordinate temp;
+        var XYCoordinate newPosition;
+
+        let temp = XYCoordinate.new(getHeadX() - 1, getHeadY());
+        if(~(temp.equals(prey.getCoordinate()))) {
+            // remove element at the tail of the list
+            do snakeBlocks.removeLast();
+        } else {
+            // snake reached prey
+            //  do not remove last block as the snake will grow
+            //  reposition prey, loop in order to make sure that the new position is not over the snake blocks
+            let newPosition = prey.reposition();
+            while(snakeBlocks.includes(newPosition)) {
+                let newPosition = prey.reposition();
+            }
+        }
+
+        // add element at the start of list
+        let snakeBlocks = BlockList.new(temp, snakeBlocks);
+
+        // set current direction
+        let currentDirection = Constants.getLeftArrowChar();
+
+        return;
+    }
+
+    method void moveRight() {
+        var XYCoordinate temp;
+        var XYCoordinate newPosition;
+
+        let temp = XYCoordinate.new(getHeadX() + 1, getHeadY());
+        if(~(temp.equals(prey.getCoordinate()))) {
+            // remove element at the tail of the list
+            do snakeBlocks.removeLast();
+        } else {
+            // snake reached prey
+            //  do not remove last block as the snake will grow
+            //  reposition prey, loop in order to make sure that the new position is not over the snake blocks
+            let newPosition = prey.reposition();
+            while(snakeBlocks.includes(newPosition)) {
+                let newPosition = prey.reposition();
+            }
+        }
+
+        // add element at the start of list
+        let snakeBlocks = BlockList.new(temp, snakeBlocks);
+
+        // set current direction
+        let currentDirection = Constants.getRightArrowChar();
+
+        return;
+    }
+
+    method void moveUp() {
+        var XYCoordinate temp;
+        var XYCoordinate newPosition;
+
+        let temp = XYCoordinate.new(getHeadX(), getHeadY() - 1);
+        if(~(temp.equals(prey.getCoordinate()))) {
+            // remove element at the tail of the list
+            do snakeBlocks.removeLast();
+        } else {
+            // snake reached prey
+            //  do not remove last block as the snake will grow
+            //  reposition prey, loop in order to make sure that the new position is not over the snake blocks
+            let newPosition = prey.reposition();
+            while(snakeBlocks.includes(newPosition)) {
+                let newPosition = prey.reposition();
+            }
+        }
+
+        // add element at the start of list
+        let snakeBlocks = BlockList.new(temp, snakeBlocks);
+
+        // set current direction
+        let currentDirection = Constants.getUpArrowChar();
+
+        return;
+    }
+
+    method void moveDown() {
+        var XYCoordinate temp;
+        var XYCoordinate newPosition;
+        
+        let temp = XYCoordinate.new(getHeadX(), getHeadY() + 1);
+        if(~(temp.equals(prey.getCoordinate()))) {
+            // remove element at the tail of the list
+            do snakeBlocks.removeLast();
+        } else {
+            // snake reached prey
+            //  do not remove last block as the snake will grow
+            //  reposition prey, loop in order to make sure that the new position is not over the snake blocks
+            let newPosition = prey.reposition();
+            while(snakeBlocks.includes(newPosition)) {
+                let newPosition = prey.reposition();
+            }
+        }
+
+        // add element at the start of list
+        let snakeBlocks = BlockList.new(temp, snakeBlocks);
+        
+        // set the current direction
+        let currentDirection = Constants.getDownArrowChar();
+       
+        return;
+    }
+
+    method void moveSameDirection() {
+        if(currentDirection = Constants.getUpArrowChar()) { do moveUp(); }
+        if(currentDirection = Constants.getDownArrowChar()) { do moveDown(); }
+        if(currentDirection = Constants.getLeftArrowChar()) { do moveLeft(); }
+        if(currentDirection = Constants.getRightArrowChar()) { do moveRight(); }
+        return;
+    }
+
+    method void move(char key) {
+        do hide();
+
+        if(key = Constants.getNoKeyPressedChar()) { do moveSameDirection(); }
+
+        if(currentDirection = Constants.getDownArrowChar()) {
+            if(key = Constants.getLeftArrowChar()) { do moveLeft(); }
+            if(key = Constants.getRightArrowChar()) { do moveRight(); }
+        }
+
+        if(currentDirection = Constants.getUpArrowChar()) {
+            if(key = Constants.getLeftArrowChar()) { do moveLeft(); }
+            if(key = Constants.getRightArrowChar()) { do moveRight(); }
+        }
+
+        if(currentDirection = Constants.getLeftArrowChar()) {
+            if(key = Constants.getUpArrowChar()) { do moveUp(); }
+            if(key = Constants.getDownArrowChar()) { do moveDown(); }
+        }
+        if(currentDirection = Constants.getRightArrowChar()) {
+            if(key = Constants.getUpArrowChar()) { do moveUp(); }
+            if(key = Constants.getDownArrowChar()) { do moveDown(); }
+        }
+
+        do show();
+        return;
+    }
+
+    method void show() {
+        do Screen.setColor(true);
+        do draw();
+        return;
+    }
+
+    method void hide() {
+        do Screen.setColor(false);
+	    do draw();
+        return;
+    }
+
+    method void draw() {
+        do snakeBlocks.draw();
+	    return;
+    }
+
+    method void print() {
+        do Output.printString(" SBs: ");
+        do snakeBlocks.print();
+        do Output.printString(" Done ");
+        return;
+    }
+
+    method int length() {
+        return snakeBlocks.length();
+    }
+}

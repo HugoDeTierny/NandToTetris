@@ -2,28 +2,38 @@ class Wall{
 	field int Position;
 	field int Hole;
 	field int m_rnd_seed;
-	
+	field int Bird_Min_X;
+	field int Bird_Max_X;
 	constructor Wall new(int position, int seed){
 		let Position = position;
 		let m_rnd_seed = seed;
 		let Hole = 100;
-		
+		let Bird_Min_X =  90;//birdStart;
+		let Bird_Max_X =  110;//birdStart + birdSize;
 		return this;
 	}
 	
-	method void draw(){
+	method void draw(int y_min, int y_max){		
 		if(Position > 0){
 			if (Position < 502){
-				do Screen.drawRectangle(Position, 1, Position + 10 , Hole - 20);
-				do Screen.drawRectangle(Position, Hole + 20, Position + 10 , 250); 
+				do Screen.drawRectangle(Position, 0, Position + 10 , Hole - 40);
+				do Screen.drawRectangle(Position, Hole + 40, Position + 10 , 256); 
+			}
+			if( (Bird_Max_X > Position) & (Bird_Min_X < (Position + 10))) {
+				
+				if ((y_min < (Hole -40) | (y_max > (Hole + 40)) ) ) {
+					do Screen.drawRectangle(-5,0,10,-5);
+				}
 			}
 		}
+		
+		
 		return;
 	}
 	
-	method void move(){
+	method void move(int y_min, int y_max){
 		let Position = Position - 1;
-		do draw();
+		do draw(y_min, y_max);
 		return;
 	}
 	

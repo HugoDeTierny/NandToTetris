@@ -1,0 +1,114 @@
+function Prey.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+push argument 1
+call XYCoordinate.new 2
+pop this 0
+push pointer 0
+return
+function Prey.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call XYCoordinate.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Prey.getCoordinate 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Prey.getX 0
+push argument 0
+pop pointer 0
+push this 0
+call XYCoordinate.getX 1
+return
+function Prey.getY 0
+push argument 0
+pop pointer 0
+push this 0
+call XYCoordinate.getY 1
+return
+function Prey.regenerate 4
+push argument 0
+pop pointer 0
+call Constants.getMaxGridX 0
+push constant 1
+sub
+pop local 0
+call Constants.getMaxGridY 0
+push constant 1
+sub
+pop local 1
+push pointer 0
+call Prey.getX 1
+push local 0
+call Utils.getRandomNumber 2
+pop local 2
+push pointer 0
+call Prey.getY 1
+push local 1
+call Utils.getRandomNumber 2
+pop local 3
+push this 0
+push local 2
+call XYCoordinate.setX 2
+pop temp 0
+push this 0
+push local 3
+call XYCoordinate.setY 2
+pop temp 0
+push constant 0
+return
+function Prey.show 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+call XYCoordinate.draw 1
+pop temp 0
+push constant 0
+return
+function Prey.hide 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+call XYCoordinate.draw 1
+pop temp 0
+push constant 0
+return
+function Prey.reposition 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Prey.hide 1
+pop temp 0
+push pointer 0
+call Prey.regenerate 1
+pop temp 0
+push pointer 0
+call Prey.show 1
+pop temp 0
+push this 0
+return
+function Prey.print 0
+push argument 0
+pop pointer 0
+push this 0
+call XYCoordinate.print 1
+pop temp 0
+push constant 0
+return

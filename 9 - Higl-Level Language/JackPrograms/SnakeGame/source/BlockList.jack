@@ -1,0 +1,101 @@
+/**
+    List data structure used to keep the building blocks of the snake
+*/
+class BlockList {
+    field XYCoordinate data;
+    field BlockList next;
+
+    constructor BlockList new(XYCoordinate car, BlockList cdr) {
+        let data = car;
+        let next = cdr;
+        return this;
+    }
+
+    method void dispose() {
+        do data.dispose();
+        if(~(next = null)) {
+            do next.dispose();
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method XYCoordinate getData() { return data; }
+
+    method BlockList getNext() { return next; }
+
+    method void setNext(BlockList nextBlock) {
+        let next = nextBlock;
+        return;
+    }
+
+    method void removeLast() {
+        var BlockList current;
+        var BlockList prev;
+
+        let current = this;
+        let prev = null;
+
+        while (~(current.getNext() = null)) {
+            let prev = current;
+            let current = current.getNext();
+        }
+
+        if (~(prev = null)) {
+            do current.dispose();
+            do prev.setNext(null);
+        } else {
+            // Only one element in the list, clear its data
+            do Memory.deAlloc(data);
+            let data = null;
+        }
+        return;
+    }
+
+    method void printData() {
+        if(~(data = null)) {
+            do data.print();
+        }
+        return;
+    }
+
+    method void print() {
+        do printData();
+        if(~(next = null)) {
+            do next.print();
+        }
+        return;
+    }
+
+    method void drawData() {
+        if(~(data = null)) {
+            do data.draw();
+        }
+        return;
+    }
+
+    method void draw() {
+        do drawData();
+        if(~(next = null)) {
+            do next.draw();
+        }
+        return;
+    }
+
+    method int length() {
+        if(~(next = null)) {
+            return 1 + next.length();
+        }
+        return 1;
+    }
+
+    method boolean includes(XYCoordinate element) {
+        if (data.equals(element)) {
+            return true;
+        }
+        if (~(next = null)) {
+            return next.includes(element);
+        }
+        return false;
+    }
+}

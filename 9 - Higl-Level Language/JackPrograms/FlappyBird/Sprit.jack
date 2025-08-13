@@ -1,0 +1,60 @@
+class Sprit{
+	field int center_X;
+	field int center_Y;
+	field int size_X;
+	field int size_Y;
+	
+	constructor Sprit new(){
+		let center_X = 100;
+		let center_Y = 100;
+		
+		return this;
+	}
+	
+	method void move(boolean up){
+		do blankPip();
+		if(up){
+			let center_Y = center_Y - 1;
+		}
+		else {
+			let center_Y = center_Y + 1;
+		}
+		do drawPip();
+		return;
+	}
+	
+	method void drawPip() {
+		var int x1;
+		var int y1;
+		var int x2;
+		var int y2;
+		let x1 = center_X - 10;
+		let y1 = center_Y - 10;
+		let x2 = x1 + 20;
+		let y2 = y1 + 20;
+
+		do Screen.setColor(true);
+		do Screen.drawRectangle(x1, y1, x2, y2);
+		return;
+	}
+	
+	
+  method void blankPip() {
+		var int x1;
+		var int y1;
+		var int x2;
+		var int y2;
+		let x1 = center_X - 10;
+		let y1 = center_Y - 10;
+		let x2 = x1 + 20;
+		let y2 = y1 + 20;
+
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x1, y1, x2, y2);
+		return;
+  }
+  
+	method int getBot() { return (center_Y -10); }
+	method int getTop() { return (center_Y +10); }
+	
+}

@@ -1,0 +1,70 @@
+/**
+    Class modeling the snake's food / prey
+*/
+class Prey {
+    field XYCoordinate coordinate;
+
+    constructor Prey new(int x, int y) {
+        let coordinate = XYCoordinate.new(x, y);
+        return this;
+    }
+
+    method void dispose() {
+        do coordinate.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method XYCoordinate getCoordinate() { return coordinate; }
+    
+    method int getX() { return coordinate.getX(); }
+
+    method int getY() { return coordinate.getY(); }
+
+    /**
+        Method used to generate pseudo-random location for the next prey to be catched by the snake
+    */
+    method void regenerate() {
+        var int maxX;
+        var int maxY;
+        var int newX;
+        var int newY;
+
+        let maxX = Constants.getMaxGridX() - 1;
+        let maxY = Constants.getMaxGridY() - 1;
+
+        let newX = Utils.getRandomNumber(getX(), maxX);
+        let newY = Utils.getRandomNumber(getY(), maxY);
+
+        do coordinate.setX(newX);
+        do coordinate.setY(newY);
+        return;
+    }
+
+    method void show() {
+        do Screen.setColor(true);
+        do coordinate.draw();
+        return;
+    }
+
+    method void hide() {
+        do Screen.setColor(false);
+        do coordinate.draw();
+        return;
+    }
+
+    /**
+        Repositions the next prey on the grid
+    */
+    method XYCoordinate reposition() {
+        do hide();
+        do regenerate();
+        do show();
+        return coordinate;
+    }
+
+    method void print() {
+        do coordinate.print();
+        return;
+    }
+}

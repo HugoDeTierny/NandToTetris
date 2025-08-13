@@ -1,0 +1,27 @@
+class Main {
+    function void main() {
+        var LCG p;
+        var int x, i, min, max, numbers;
+        let p = LCG.new(67);
+        do Output.printString("LCG-based Random Number Generator v1.6");
+        do Output.println();
+        let min = Keyboard.readInt("Enter minimum number: ");
+        do Output.println();
+        let max = Keyboard.readInt("Enter maximum number: ");
+        do Output.println();
+        let numbers = Keyboard.readInt("How many numbers: ");
+        do Output.println();
+        do Screen.setColor(false);
+        do Screen.drawRectangle(0, 0, 511, 255);
+        do Output.moveCursor(0, 0);
+        do Output.printString("Here are your numbers: ");
+        do Output.println();
+        while (numbers > 0) {
+            do Output.printString(" * ");
+            do Output.printInt(p.randbyte(min, max));
+            do Output.println();
+            let numbers = numbers - 1;
+          }
+        return;
+      }
+  }

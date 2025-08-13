@@ -1,0 +1,159 @@
+function XYCoordinate.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Constants.getMinGridX 0
+lt
+push argument 0
+or
+call Constants.getMaxGridX 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Errors.getXCoordinateOutOfRangeError 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+call Constants.getMinGridY 0
+lt
+push argument 1
+or
+call Constants.getMaxGridY 0
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call Errors.getYCoordinateOutOfRangeError 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE1
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push pointer 0
+return
+function XYCoordinate.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function XYCoordinate.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function XYCoordinate.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function XYCoordinate.setX 0
+push argument 0
+pop pointer 0
+push argument 1
+call Constants.getMinGridX 0
+lt
+push argument 1
+or
+call Constants.getMaxGridX 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Errors.getXCoordinateOutOfRangeError 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+pop this 0
+push constant 0
+return
+function XYCoordinate.setY 0
+push argument 0
+pop pointer 0
+push argument 1
+call Constants.getMinGridY 0
+lt
+push argument 1
+or
+call Constants.getMaxGridY 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Errors.getYCoordinateOutOfRangeError 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+pop this 1
+push constant 0
+return
+function XYCoordinate.draw 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.drawBlock 2
+pop temp 0
+push constant 0
+return
+function XYCoordinate.equals 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call XYCoordinate.getX 1
+eq
+push this 1
+push argument 1
+call XYCoordinate.getY 1
+eq
+and
+return
+function XYCoordinate.print 0
+push argument 0
+pop pointer 0
+push constant 8
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 91
+call String.appendChar 2
+push constant 88
+call String.appendChar 2
+push constant 44
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 93
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 0
+call Output.printInt 1
+pop temp 0
+push constant 2
+call String.new 1
+push constant 44
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 1
+call Output.printInt 1
+pop temp 0
+push constant 0
+return

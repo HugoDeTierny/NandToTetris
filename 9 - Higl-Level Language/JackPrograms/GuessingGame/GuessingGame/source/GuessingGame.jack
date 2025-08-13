@@ -1,0 +1,346 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/9/GuessingGame/GuessingGame.jack
+
+/**
+ * Implements an interactive Number Guessing Game.
+ * Features multiple difficulty levels, score tracking, and hints.
+ * The player tries to guess a randomly generated number within a range.
+ * Points are awarded based on how quickly the number is guessed.
+ */
+class GuessingGame {
+    field int secretNumber;     // The number to guess
+    field int minRange;         // Minimum value in range
+    field int maxRange;         // Maximum value in range
+    field int maxAttempts;      // Maximum allowed attempts
+    field int currentAttempts;  // Current number of attempts
+    field int totalScore;       // Player's total score
+    field int gamesPlayed;      // Number of games played
+    field int difficulty;       // Current difficulty level (1-3)
+    field RandomGenerator rng;  // Random number generator
+    
+    /** Constructs a new guessing game. */
+    constructor GuessingGame new() {
+        let rng = RandomGenerator.new();
+        let totalScore = 0;
+        let gamesPlayed = 0;
+        let difficulty = 1;
+        return this;
+    }
+    
+    /** Disposes this game. */
+    method void dispose() {
+        do rng.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    /** Main game loop. */
+    method void run() {
+        var int choice;
+        var boolean quit;
+        
+        let quit = false;
+        
+        do showWelcome();
+        
+        while (~quit) {
+            do showMainMenu();
+            let choice = Keyboard.readInt("Enter your choice: ");
+            
+            if (choice = 1) {
+                do playGame();
+            }
+            if (choice = 2) {
+                do changeDifficulty();
+            }
+            if (choice = 3) {
+                do showStatistics();
+            }
+            if (choice = 4) {
+                do showInstructions();
+            }
+            if (choice = 5) {
+                let quit = true;
+                do Output.printString("Thanks for playing! Goodbye!");
+                do Output.println();
+            }
+            if ((choice < 1) | (choice > 5)) {
+                do Output.printString("Invalid choice! Please try again.");
+                do Output.println();
+            }
+        }
+        return;
+    }
+    
+    /** Displays the welcome message. */
+    method void showWelcome() {
+        do Screen.clearScreen();
+        do Output.moveCursor(2, 20);
+        do Output.printString("===== NUMBER GUESSING GAME =====");
+        do Output.println();
+        do Output.println();
+        do Output.printString("Welcome to the ultimate guessing challenge!");
+        do Output.println();
+        do Output.printString("Test your intuition and luck!");
+        do Output.println();
+        do Output.println();
+        return;
+    }
+    
+    /** Displays the main menu. */
+    method void showMainMenu() {
+        do Output.println();
+        do Output.printString("===== MAIN MENU =====");
+        do Output.println();
+        do Output.printString("1. Play Game");
+        do Output.println();
+        do Output.printString("2. Change Difficulty");
+        do Output.println();
+        do Output.printString("3. View Statistics");
+        do Output.println();
+        do Output.printString("4. Instructions");
+        do Output.println();
+        do Output.printString("5. Quit");
+        do Output.println();
+        do Output.println();
+        return;
+    }
+    
+    /** Plays one round of the game. */
+    method void playGame() {
+        var int guess;
+        var boolean won;
+        var int points;
+        
+        do setupGame();
+        do showGameInfo();
+        
+        let won = false;
+        let currentAttempts = 0;
+        
+        while ((currentAttempts < maxAttempts) & (~won)) {
+            let currentAttempts = currentAttempts + 1;
+            
+            do Output.println();
+            do Output.printString("Attempt ");
+            do Output.printInt(currentAttempts);
+            do Output.printString(" of ");
+            do Output.printInt(maxAttempts);
+            do Output.println();
+            
+            let guess = Keyboard.readInt("Enter your guess: ");
+            
+            if (guess = secretNumber) {
+                let won = true;
+                let points = calculateScore();
+                let totalScore = totalScore + points;
+                
+                do Output.println();
+                do Output.printString("*** CONGRATULATIONS! ***");
+                do Output.println();
+                do Output.printString("You guessed it in ");
+                do Output.printInt(currentAttempts);
+                do Output.printString(" attempts!");
+                do Output.println();
+                do Output.printString("Points earned: ");
+                do Output.printInt(points);
+                do Output.println();
+            } else {
+                do giveHint(guess);
+            }
+        }
+        
+        if (~won) {
+            do Output.println();
+            do Output.printString("Game Over! The number was ");
+            do Output.printInt(secretNumber);
+            do Output.println();
+            do Output.printString("Better luck next time!");
+            do Output.println();
+        }
+        
+        let gamesPlayed = gamesPlayed + 1;
+        return;
+    }
+    
+    /** Sets up the game parameters based on difficulty. */
+    method void setupGame() {
+        if (difficulty = 1) {
+            let minRange = 1;
+            let maxRange = 50;
+            let maxAttempts = 10;
+        }
+        if (difficulty = 2) {
+            let minRange = 1;
+            let maxRange = 100;
+            let maxAttempts = 8;
+        }
+        if (difficulty = 3) {
+            let minRange = 1;
+            let maxRange = 200;
+            let maxAttempts = 6;
+        }
+        
+        let secretNumber = rng.nextIntInRange(minRange, maxRange);
+        return;
+    }
+    
+    /** Shows game information. */
+    method void showGameInfo() {
+        do Output.println();
+        do Output.printString("===== NEW GAME =====");
+        do Output.println();
+        do Output.printString("Difficulty: ");
+        if (difficulty = 1) { do Output.printString("Easy"); }
+        if (difficulty = 2) { do Output.printString("Medium"); }
+        if (difficulty = 3) { do Output.printString("Hard"); }
+        do Output.println();
+        do Output.printString("Range: ");
+        do Output.printInt(minRange);
+        do Output.printString(" to ");
+        do Output.printInt(maxRange);
+        do Output.println();
+        do Output.printString("Max attempts: ");
+        do Output.printInt(maxAttempts);
+        do Output.println();
+        return;
+    }
+    
+    /** Gives a hint to the player. */
+    method void giveHint(int guess) {
+        if (guess < secretNumber) {
+            do Output.printString("Too low! Try higher.");
+        } else {
+            do Output.printString("Too high! Try lower.");
+        }
+        do Output.println();
+        
+        // Additional hints based on how close the guess is
+        if (Math.abs(guess - secretNumber) < 5) {
+            do Output.printString("You're very close!");
+            do Output.println();
+        } else {
+            if (Math.abs(guess - secretNumber) < 15) {
+                do Output.printString("You're getting warmer!");
+                do Output.println();
+            }
+        }
+        return;
+    }
+    
+    /** Calculates score based on attempts and difficulty. */
+    method int calculateScore() {
+        var int baseScore;
+        var int bonus;
+        
+        let baseScore = 100;
+        
+        // Bonus for fewer attempts
+        let bonus = (maxAttempts - currentAttempts) * 10;
+        
+        // Difficulty multiplier
+        if (difficulty = 2) {
+            let baseScore = baseScore * 2;
+        }
+        if (difficulty = 3) {
+            let baseScore = baseScore * 3;
+        }
+        
+        return baseScore + bonus;
+    }
+    
+    /** Changes the difficulty level. */
+    method void changeDifficulty() {
+        var int newDifficulty;
+        
+        do Output.println();
+        do Output.printString("===== DIFFICULTY SETTINGS =====");
+        do Output.println();
+        do Output.printString("1. Easy (1-50, 10 attempts)");
+        do Output.println();
+        do Output.printString("2. Medium (1-100, 8 attempts)");
+        do Output.println();
+        do Output.printString("3. Hard (1-200, 6 attempts)");
+        do Output.println();
+        do Output.println();
+        do Output.printString("Current difficulty: ");
+        do Output.printInt(difficulty);
+        do Output.println();
+        
+        let newDifficulty = Keyboard.readInt("Select new difficulty (1-3): ");
+        
+        if ((newDifficulty > 0) & (newDifficulty < 4)) {
+            let difficulty = newDifficulty;
+            do Output.printString("Difficulty changed successfully!");
+            do Output.println();
+        } else {
+            do Output.printString("Invalid difficulty level!");
+            do Output.println();
+        }
+        return;
+    }
+    
+    /** Shows player statistics. */
+    method void showStatistics() {
+        var int avgScore;
+        
+        do Output.println();
+        do Output.printString("===== PLAYER STATISTICS =====");
+        do Output.println();
+        do Output.printString("Games played: ");
+        do Output.printInt(gamesPlayed);
+        do Output.println();
+        do Output.printString("Total score: ");
+        do Output.printInt(totalScore);
+        do Output.println();
+        
+        if (gamesPlayed > 0) {
+            let avgScore = totalScore / gamesPlayed;
+            do Output.printString("Average score: ");
+            do Output.printInt(avgScore);
+            do Output.println();
+        }
+        
+        do Output.printString("Current difficulty: ");
+        if (difficulty = 1) { do Output.printString("Easy"); }
+        if (difficulty = 2) { do Output.printString("Medium"); }
+        if (difficulty = 3) { do Output.printString("Hard"); }
+        do Output.println();
+        return;
+    }
+    
+    /** Shows game instructions. */
+    method void showInstructions() {
+        do Output.println();
+        do Output.printString("===== INSTRUCTIONS =====");
+        do Output.println();
+        do Output.printString("The computer picks a random number within a range.");
+        do Output.println();
+        do Output.printString("Your goal is to guess it in as few attempts as possible.");
+        do Output.println();
+        do Output.println();
+        do Output.printString("SCORING:");
+        do Output.println();
+        do Output.printString("- Base score: 100 points");
+        do Output.println();
+        do Output.printString("- Bonus: 10 points per unused attempt");
+        do Output.println();
+        do Output.printString("- Difficulty multiplier: x1, x2, or x3");
+        do Output.println();
+        do Output.println();
+        do Output.printString("DIFFICULTY LEVELS:");
+        do Output.println();
+        do Output.printString("Easy: 1-50, 10 attempts");
+        do Output.println();
+        do Output.printString("Medium: 1-100, 8 attempts");
+        do Output.println();
+        do Output.printString("Hard: 1-200, 6 attempts");
+        do Output.println();
+        do Output.println();
+        do Output.printString("Good luck and have fun!");
+        do Output.println();
+        return;
+    }
+}

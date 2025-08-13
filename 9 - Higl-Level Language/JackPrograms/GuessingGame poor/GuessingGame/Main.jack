@@ -1,0 +1,38 @@
+class Main {
+	function void main() {
+		var int secret, guess;
+		var int guesses, max;
+
+		let guesses = 0;
+		let max = 10;
+
+		let secret = Main.rand();
+
+		while (guesses < max) {
+			let guess = Keyboard.readInt("Guess my number! ");
+
+			if (guess < secret) {
+				do Output.printString("Too low");
+				do Output.println();
+			}
+			if (guess > secret) {
+				do Output.printString("Too high");
+				do Output.println();
+			}
+
+			if (guess = secret) {
+				do Output.printString("You win!");
+				return;
+			}
+
+			let guesses = guesses + 1;
+		}
+
+		return;
+	}
+
+	function int rand() {
+		// chosen with a fair dice roll;
+		return 3;
+	}
+}

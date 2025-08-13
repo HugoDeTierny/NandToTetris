@@ -1,0 +1,60 @@
+/**
+    Class used to group all the constants used in the game and also to use a meaningfull name instead of some numbers
+*/
+class Constants {
+    function int getBlockSize() {
+        return 10;
+    }
+
+    function int getMinGridX() {
+        return 0;
+    }
+
+    function int getMaxGridX() {
+        return 49;
+    }
+
+    function int getMinGridY() {
+        return 0;
+    }
+
+    function int getMaxGridY() {
+        return 19;
+    }
+
+    function int getMinCursorLine() {
+        return 0;
+    }
+
+    function int getMaxCursorLine() {
+        return 22;
+    }
+
+    function char getLeftArrowChar() {
+        return 130;
+    }
+
+    function char getUpArrowChar() {
+        return 131;
+    }
+
+    function char getRightArrowChar() {
+        return 132;
+    }
+
+    function char getDownArrowChar() {
+        return 133;
+    }
+
+    function char getEscChar() {
+        return 140;
+    }
+
+    function char getNoKeyPressedChar() {
+        return 0;
+    }
+
+    function int getFramePauseTime() {
+        return 100;
+    }
+}

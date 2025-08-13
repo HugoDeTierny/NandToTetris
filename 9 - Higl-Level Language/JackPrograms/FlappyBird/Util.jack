@@ -1,7 +1,6 @@
 class Util
 {
-
-  
+ 
   function int mod(int a, int b)
   {
     var int div;

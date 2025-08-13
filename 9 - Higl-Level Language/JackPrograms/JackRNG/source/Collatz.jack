@@ -1,0 +1,20 @@
+class Collatz {
+    field int current;
+    constructor Collatz new(int s1) {
+        let current = s1;
+        return this;
+      }
+
+    method int next(int start, int end) {
+        var int out;
+        if (LCG.modulo(current, 2) = 0) {
+            let current = current / 2;
+        }
+        if (~(LCG.modulo(current, 2) = 0)) {
+            let current = (current * 3) + 1;
+          }
+        let current = (current + 1) & (current + 3) + 1;
+        let out = start+LCG.modulo(current, end-start);
+        return out;
+      }
+  }

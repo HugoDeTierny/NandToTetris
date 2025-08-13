@@ -4,10 +4,9 @@ class Main {
     var String str;
 	do StartupScreen.show_title_screen();
 	
-	
-    do Output.moveCursor(17, 1);
-    let str = "Choose your sprite";
-    do Output.printString(str);
+//    do Output.moveCursor(17, 1);
+ //   let str = "Choose your sprite";
+   // do Output.printString(str);
   
     do Output.moveCursor(22, 1);
     let str = "Choose a difficulty between 1 and 4";

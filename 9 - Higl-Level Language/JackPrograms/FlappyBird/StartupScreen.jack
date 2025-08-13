@@ -2,40 +2,25 @@ class StartupScreen {
   function void show_title_screen() {
     var String str;
 
-    // do TitleCredit.draw(0, 0);
-    // do GuiDocGoalT0.draw(0, TitleCredit.get_y_size() + 8);
-
-    /*
-                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    */
-
     // Display the rules
     do Output.moveCursor(3, 2);
     let str = "Welcome to my flappy bird implementation.";
     do Output.printString(str);
 
     do Output.moveCursor(4, 2);
-    let str = "This is an hommage to the first flappy bird from 2012, and, will not be used for commercial purpose";
+    let str = "This is an hommage to the first flappy bird from 2012, and, ";
     do Output.printString(str);
-	    do Output.moveCursor(5, 1);
-    let str = " will not be used for commercial purpose";
+	
+	do Output.moveCursor(5, 2);
+    let str = "will not be used for commercial purpose";
     do Output.printString(str);
-
+	
     do Output.moveCursor(7, 2);
     let str = "The objective of the game is to fly through as many gates as possible";
     do Output.printString(str);
 
     do Output.moveCursor(8, 2);
-    let str = "if no key is pressed the bird will go down";
+    let str = "possible. If no key is pressed the bird will go down";
     do Output.printString(str);
 
     do Output.moveCursor(10, 2);
@@ -43,49 +28,23 @@ class StartupScreen {
     do Output.printString(str);
 
     do Output.moveCursor(11, 2);
-    let str = "If your bird meet a gate, the ground, our the top of the screen it will result in dying";
+    let str = "If your bird meet a gate, the ground, our the top ";
+    do Output.printString(str);
+	
+	do Output.moveCursor(12, 2);
+    let str = "of the screen it will result in dying";
     do Output.printString(str);
 
-    do Output.moveCursor(12, 2);
-    let str = "There are different difficulty level changing the bird speed.";
+    do Output.moveCursor(15, 2);
+    let str = "There are different difficulty level changing the ";
+    do Output.printString(str);
+	
+	
+    do Output.moveCursor(16, 2);
+    let str = " number of wall.";
     do Output.printString(str);
 
 
-/*
-    do Output.moveCursor(14, 1);
-    let str = "itself.  The center pip, #5, inverts itself and";
-    do Output.printString(str);
-
-    do Output.moveCursor(15, 0);
-    let str = "pips 2, 4, 6, and 8.  Finally, the middle edge pips, invert all";
-    do Output.printString(str);
-
-    do Output.moveCursor(14, 0);
-    let str = "pips of its edge.";
-    do Output.printString(str);
-
-    do Output.moveCursor(16, 0);
-    let str = "History:  This game was one of the built-in games in the late";
-    do Output.printString(str);
-
-    do Output.moveCursor(17, 0);
-    let str = "1970's Parker Bros. handheld game, Merlin.  This implementation";
-    do Output.printString(str);
-
-    do Output.moveCursor(18, 0);
-    let str = "was inspired by the assembly language version in the book";
-    do Output.printString(str);
-
-    do Output.moveCursor(19, 0);
-    do Output.printChar(34);
-
-    let str = "6502 Games";
-    do Output.printString(str);
-    do Output.printChar(34);
-
-    let str = " (c) 1980 by Rodney Zaks.";
-    do Output.printString(str);
-*/
     return;
   }
 }

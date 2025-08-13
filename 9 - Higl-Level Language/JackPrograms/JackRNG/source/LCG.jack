@@ -1,0 +1,30 @@
+class LCG {
+  /**  Linear Congruentional Generator 
+       A simple PRNG, not suitable for cryptography. 
+       new function takes the statring seed as a parameter. 
+       randbyte acts like random.randint from python. **/
+    field int seed;
+    constructor LCG new(int s) {
+        // initializes the seed
+        let seed = s;
+        return this;
+      }
+    method int randbyte(int start, int end) {
+      // generates a random number between start and end
+        var int a, c, output;
+        // This number should be bigger, but the HACK computer is unable to handle it
+        let a = 179;
+        // Same with this one. The biggest number HACK can have is 32767, which is about 50 times less than the recommended A and C constants.
+        let c = 7245;
+        // The actual algorithm is done here
+        let seed = seed * a + c;
+        // Does some maths mixed with dark magic to get the raw number into the right range.
+        let output = start + LCG.modulo(Math.abs(seed), end-start) + 1;
+        return output;
+
+      }
+    function int modulo(int a, int b) {
+        // a helper function used for modulo
+        return a - ((a / b) * b);
+      }
+}

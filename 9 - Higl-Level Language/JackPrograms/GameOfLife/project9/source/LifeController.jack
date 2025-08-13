@@ -1,0 +1,223 @@
+/**
+ * Implements Conways Game of Life.
+ */
+class LifeController {
+   field int numRows;
+   field int numCols;
+   field int numAgents;
+   field Array agents;
+   field int agentSize;
+   field int height;
+   field int width;
+
+   /** Constructs a new life simulation. */
+   constructor LifeController new() {
+      // Intialize the life simulation with the Acorn pattern
+      do setup();
+      return this;
+   }
+
+   /** Disposes this sim. */
+   method void dispose() {
+      do agents.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void setup() {
+      var int i;
+      var AgentModel agent;
+
+      let numRows = 256;
+      let numCols = 512;
+      let height = 32;
+      let width = 64;
+      let numAgents = 2048; 
+      let agentSize = 8;
+      let agents = Array.new(numAgents);
+      let i = 0;
+
+      while (i < numAgents) {
+         let agent = AgentModel.new();
+         let agents[i] = agent;
+         let i = i + 1;
+      }
+
+      do Output.moveCursor(10,22);
+	   do Output.printString("Conway's Game of Life");
+
+      return;
+   }
+ 
+   /** Runs the life sim */
+   method void run() {
+      var char key;  // the key currently pressed by the user
+      var boolean exit;
+      let exit = false;
+ 
+      do drawAcornPattern();
+
+      while (~exit) {
+         // waits for a key to be pressed
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+            do drawNextTimeStep();
+         }
+
+         // TODO: Support pause and resume
+         if (key = 81)  { let exit = true; }     // q key
+
+         // waits for the key to be released
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do drawNextTimeStep();
+         }
+     } // while
+
+     return;
+   }
+
+   /** Draws the initial state for conways game of life: the acorn pattern **/
+   method void drawAcornPattern() {
+      var int i;
+
+      let i = 0 * width + 1;
+      do setAliveAndDraw(i);
+   
+      let i = 1 * width + 3;
+      do setAliveAndDraw(i);
+
+      let i = 2 * width + 0;
+      do setAliveAndDraw(i);
+
+      let i = 2 * width + 1;
+      do setAliveAndDraw(i);
+
+      let i = 2 * width + 4;
+      do setAliveAndDraw(i);
+
+      let i = 2 * width + 5;
+      do setAliveAndDraw(i);
+
+      let i = 2 * width + 6;
+      do setAliveAndDraw(i);
+
+      return;
+   }
+
+   /** Helper method for drawAcornPattern **/
+   method void setAliveAndDraw(int i) {
+      var AgentModel agent;
+      let agent = agents[i];
+      do agent.setIsAlive(true);
+      do draw(i); 
+      return;
+   }
+
+   /** 
+      Draws the next pattern based on the following rules:
+      - "Live" - a full cell remains full if a certain number of neighbors are full (2,3)
+      - "Die" - a full cell becomes empty if a certain number of neighbors are full (0,1,4,5,6,7,8)
+      - "Born" - an empty cell becomes full if a certain number of neighbors are full (3)
+   **/
+   method void drawNextTimeStep() {
+      var int x;
+      var int y;
+      var int i;
+      var int j;
+      var AgentModel agent;
+      var int numNeighbors;
+      var int numAliveNeighbors;
+      var Array neighbors;
+      var AgentModel neighbor;
+      var boolean alive;
+      var List bornOrDying;
+      var List runner;
+
+      let numNeighbors = 8;
+      let neighbors = Array.new(numNeighbors);
+      let i = 0;
+      let bornOrDying = null; 
+      let runner = null;
+
+      while (i < numAgents) {
+         let x = MathExtension.modulo(i, width);
+         let y = i / width;
+         let numAliveNeighbors = 0;
+
+         let neighbors[0] = agents[MathExtension.modulo((y - 1 + height), height) * width + MathExtension.modulo((x - 1 + width), width)];
+         let neighbors[1] = agents[MathExtension.modulo((y - 1 + height), height) * width + x];
+         let neighbors[2] = agents[MathExtension.modulo((y - 1 + height), height) * width + MathExtension.modulo((x + 1), width)];
+         let neighbors[3] = agents[y * width + MathExtension.modulo((x - 1 + width), width)];
+         let neighbors[4] = agents[y * width + MathExtension.modulo((x + 1), width)];
+         let neighbors[5] = agents[MathExtension.modulo((y + 1), height) * width + MathExtension.modulo((x - 1 + width), width)];
+         let neighbors[6] = agents[MathExtension.modulo((y + 1), height) * width + x];
+         let neighbors[7] = agents[MathExtension.modulo((y + 1), height) * width + MathExtension.modulo((x + 1), width)];
+
+         let j = 0;
+         while (j < numNeighbors) {
+            let neighbor = neighbors[j];
+            let alive = neighbor.getIsAlive();
+
+            if (alive) {
+               let numAliveNeighbors = numAliveNeighbors + 1;
+            }
+
+            let j = j + 1;
+         }
+
+         let agent = agents[i];
+         do agent.stageIsDying(numAliveNeighbors);
+
+         if (agent.getIsBornOrDying()) {
+            let bornOrDying = List.new(i, bornOrDying);
+         }
+
+         let i = i + 1;
+      }
+
+      let runner = bornOrDying;
+      while (~(runner = null)) {
+         let i = runner.getData();
+         let agent = agents[i];
+ 
+         do agent.commitIsDying();
+         do draw(i);
+
+         let runner = runner.getNext();
+      }
+
+      do neighbors.dispose();
+
+      if (~(bornOrDying = null)) {
+         do bornOrDying.dispose();
+      }
+
+      return; 
+   }
+
+   /** Draws the agent rectanble at the given index. Black if alive and white if dead. **/
+   method void draw(int i) {
+      var int x;
+      var int y;
+      var AgentModel agent;
+ 
+      let agent = agents[i];
+      let x = MathExtension.modulo(i, width) * agentSize;
+      let y = (i / width) * agentSize;
+
+      if (agent.getIsAlive()) {
+        // Draws the agent using the color black
+        do Screen.setColor(true); 
+      } else {
+        // Draws the agent using the color white (background color)
+        do Screen.setColor(false); 
+      }
+
+      do Screen.drawRectangle(x, y, x + agentSize - 1, y + agentSize - 1);
+
+      return; 
+   }
+
+
+}
