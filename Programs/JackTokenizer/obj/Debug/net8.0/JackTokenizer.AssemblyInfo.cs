@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("HackAssembler")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("JackTokenizer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b5214cfe362d7946226d2d798df9c5e5da2ba6b")]
-[assembly: System.Reflection.AssemblyProductAttribute("HackAssembler")]
-[assembly: System.Reflection.AssemblyTitleAttribute("HackAssembler")]
+[assembly: System.Reflection.AssemblyProductAttribute("JackTokenizer")]
+[assembly: System.Reflection.AssemblyTitleAttribute("JackTokenizer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Généré par la classe MSBuild WriteCodeFragment.

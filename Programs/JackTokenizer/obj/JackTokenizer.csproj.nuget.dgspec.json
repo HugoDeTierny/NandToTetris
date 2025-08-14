@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\HackAssembler.csproj": {}
+    "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\JackTokenizer\\JackTokenizer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\HackAssembler.csproj": {
+    "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\JackTokenizer\\JackTokenizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\HackAssembler.csproj",
-        "projectName": "HackAssembler",
-        "projectPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\HackAssembler.csproj",
+        "projectUniqueName": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\JackTokenizer\\JackTokenizer.csproj",
+        "projectName": "JackTokenizer",
+        "projectPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\JackTokenizer\\JackTokenizer.csproj",
         "packagesPath": "C:\\Users\\h.tierny\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\6 - HackAssembler\\obj\\",
+        "outputPath": "C:\\Users\\h.tierny\\Desktop\\NandToTetris\\Programs\\JackTokenizer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

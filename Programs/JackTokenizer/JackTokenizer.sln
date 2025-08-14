@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JackTokenizer", "JackTokenizer.csproj", "{9D5C64B5-D425-4005-A180-16A321E30B09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VmTranslator", "..\VmTranslator\VmTranslator.csproj", "{3C3BFE3E-0E2C-4621-16DD-837FD75D4AED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackAssembler", "..\6 - HackAssembler\HackAssembler.csproj", "{552C442A-9C08-606F-3F43-A6D17CDA262C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D5C64B5-D425-4005-A180-16A321E30B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5C64B5-D425-4005-A180-16A321E30B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5C64B5-D425-4005-A180-16A321E30B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5C64B5-D425-4005-A180-16A321E30B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3BFE3E-0E2C-4621-16DD-837FD75D4AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3BFE3E-0E2C-4621-16DD-837FD75D4AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3BFE3E-0E2C-4621-16DD-837FD75D4AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3BFE3E-0E2C-4621-16DD-837FD75D4AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552C442A-9C08-606F-3F43-A6D17CDA262C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552C442A-9C08-606F-3F43-A6D17CDA262C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552C442A-9C08-606F-3F43-A6D17CDA262C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552C442A-9C08-606F-3F43-A6D17CDA262C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF1A374A-77B7-4638-B3DE-A88FE97B85E8}
+	EndGlobalSection
+EndGlobal
